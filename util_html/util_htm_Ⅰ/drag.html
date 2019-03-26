@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="拖拽">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+	<title>HTML5拖拽效果</title>
+
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#div{
+			width: 240px;
+			height: 180px;
+			border: 1px solid #DDD;
+			margin: 0 auto;
+		}
+	</style>
+
+	<script>
+	window.onload=function(){
+		var pic=document.getElementById('pic');
+		//1.拖什么？-- ondragstart和setData();
+		pic.ondragstart=function(ev){
+			var ev=ev || window.event;
+			ev.dataTransfer.setData('Text',ev.target.id);//规定了被拖动数据的数据类型和值
+		}
+
+		//2.放到何处？-- dragover
+		var div=document.getElementById('div');
+		div.ondragover=function(ev){
+			var ev=ev || window.event;
+			//默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。
+			ev.preventDefault();
+		}
+
+		//3.进行放置 -- ondrop
+		div.ondrop=function(e){
+			var e=e || window.event;
+			e.preventDefault();//避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）
+			//获得被拖的数据。该方法将返回在 setData() 方法中设置为相同类型的任何数据。
+			var data=e.dataTransfer.getData('Text');
+			//var data_id=document.getElementById('data');//被拖数据是被拖元素的 id ("drag1")
+			e.target.appendChild(document.getElementById(data));//把被拖元素追加到放置元素（目标元素）中
+		}
+	}
+		
+	</script>
+<body>
+	<div id="div"></div>
+	<img id="pic" src="images/1.jpg" title="" draggable="true" width="" height="">
+</body>
+</head>
+</html>

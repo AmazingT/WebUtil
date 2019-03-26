@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width initial-scale=1,user-scalable=no"><!---禁止缩放user-scalable=no-->
+	<title>项目实战</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<style type="text/css">
+		body{
+			font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif; 
+		}
+		#myCarousel{
+			margin: 50px 0 0;
+		}
+		.carousel-inner img{
+			margin: 0 auto;
+		}
+		/* .carousel-control{
+			font-size: 50px;
+		} */
+		.tab-h2{
+			font-size: 20px;
+			text-align: center;
+			letter-spacing: 1px;
+			color: #0059b2;
+		}
+		.tab-p{
+			font-size: 15px;
+			text-align: center;
+			letter-spacing: 1px;
+			color: #999;
+		}
+		.tab1{
+			margin: 30px 0;
+			color: #666;
+		}
+		.tab1 .media-muted{
+			color: #999;
+			text-decoration: line-through;
+		}
+		.tab1 .media-heading{
+			margin: 5px 0 20px 0;
+		}
+		.tab1 .col{
+			padding: 20px;
+		}
+		.text h3{
+			font-size: 20px;
+		}
+		.text p{
+			font-size: 14px;
+		}
+
+		.tab2{
+			background: #eee;
+			padding: 60px 20px;
+			text-align: center;
+		}
+		.tab2 img{
+			width: 40%;
+			height: 40%;
+		}
+		.tab3{
+			padding: 60px 0;
+			text-align: center;
+		}
+		.tab3 img{
+			width: 65%;
+			height: 65%;
+		}
+		.text h3{
+			font-size: 20px;
+		}
+		.text p{
+			font-size: 14px;
+		}
+
+		/* 注脚 */
+		#footer{
+			padding: 20px;
+			text-align: center;
+			background: #eee;
+			border-top: 1px solid #ccc;
+		}
+
+		#top {
+			width:40px; 
+			height:40px; 
+			right:25px; 
+			bottom:25px; 
+			display: none; 
+			position:fixed; 
+			background:url("img/top_bg.png") no-repeat left top;
+		}
+		#top:hover {
+			background:url("img/top_bg.png") no-repeat 0 -40px;
+		}
+		/*没有小于768px，是因为bootstrap3是以移动端为优先！*/
+		/* 小屏幕（平板，大于等于 768px） */ 
+		@media (min-width: 768px) { 
+			.tab-h2 { font-size: 26px; } 
+			.tab-p { font-size: 16px; } 
+			.text h3{font-size: 22px;}
+			.text p{font-size: 15px;}
+			.tab2-text{float:left;}
+			.tab2-img{float:right;}
+		}
+		/* 中等屏幕（桌面显示器，大于等于 992px） */ 
+		@media (min-width: 992px) { 
+			.tab-h2 { font-size: 28px; } 
+			.tab-p { font-size: 17px; } 
+			.text h3{font-size: 24px;}
+			.text p{font-size: 16px;}
+			.tab2-text{float:left;}
+			.tab2-img{float:right;}
+		}
+		/* 大屏幕（大桌面显示器，大于等于 1200px） */ 
+		@media (min-width: 1200px) { 
+			.tab-h2 { font-size: 30px; } 
+			.tab-p { font-size: 18px; } 
+			.text h3{font-size: 26px;}
+			.text p{font-size: 18px;}
+			.tab2-text{float:left;}
+			.tab2-img{float:right;}
+		}
+	</style>
+</head>
+<body>
+<!-- 位置调整是margin和padding值 -->
+<!-- 头部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand" style="padding:6px 10px;"><img src="img/douyu.PNG" alt=""></a>
+			<!-- 缩小隐藏按钮 -->
+			<button class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" type="button">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<!-- 响应式(加上折叠collapse) -->
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right" style="margin-top:0;">
+				<li class="active">
+					<a href="#">	
+						<span class="glyphicon glyphicon-home"></span> 首页
+					</a>
+				</li>
+				<li>
+					<a href="information.html">
+						<span class="glyphicon glyphicon-list"></span> 资讯
+					</a>
+				</li>
+				<li>
+					<a href="case.html">
+						<span class="glyphicon glyphicon-fire"></span> 案例
+					</a>
+				</li>
+				<li>
+					<a href="about.html">
+						<span class="glyphicon glyphicon-question-sign"></span> 关于
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- 主体轮播图 -->
+<div id="myCarousel" class="carousel slide">
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>
+
+	<div class="carousel-inner">
+		<div class="item active" style="background:#223240;">
+			<img src="img/slide1.png" alt="1">
+			<div class="carousel-caption">
+				<h4>标题一</h4>
+				<p>图片一简介</p>
+			</div>
+		</div>
+		<div class="item" style="background:#f5e4dc;">
+			<img src="img/slide2.png" alt="2">
+			<div class="carousel-caption">
+				<h4>标题二</h4>
+				<p>图片二简介</p>
+			</div>
+		</div>
+		<div class="item" style="background:#de2a2d;">
+			<img src="img/slide3.png" alt="3">
+			<div class="carousel-caption">
+				<h4>标题三</h4>
+				<p>图片三简介</p>
+			</div>
+		</div>
+	</div>
+
+	<a href="#myCarousel" class="carousel-control left" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	<a href="#myCarousel" class="carousel-control right" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</div>
+
+<!--主体内容-->
+<div class="tab1">
+	<div class="container">
+		<h2 class="tab-h2">「 为什么选择瓢城企业培训 」</h2>
+		<p class="tab-p">强大的师资力量，完美的实战型管理课程，让您的企业 实现质的腾飞！</p>
+		<div class="row">
+			<div class="col-md-6 col">
+				<div class="media-left">
+					<a href="#"><img class="media-object" src="img/tab1-1.png" alt=""></a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">课程内容</h4>
+					<p class="media-muted">其他：高校不知名的讲师编写,没有任何实战价值的教材！</p>
+					<p>我们：知名企业家,管理学大师联合编写的具有实现性教材。</p>
+				</div>	
+			</div>
+			<div class="col-md-6 col">
+				<div class="media-left">
+					<a href="#"><img class="media-object" src="img/tab1-2.png" alt=""></a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">师资力量</h4>
+					<p class="media-muted">其他：非欧美正牌大学毕业的、
+业界没有知名度的讲师！</p>
+					<p>其他：美国哈佛、耶鲁等世界一流高校、享有声誉的名
+牌专家！</p>
+				</div>
+			</div>
+			<div class="col-md-6 col">
+				<div class="media-left">
+					<a href="#"><img class="media-object" src="img/tab1-3.png" alt=""></a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">课时安排</h4>
+					<p class="media-muted">其他：无法保证上课效率、没 有时间表，任务无法完成！</p>
+					<p>其他：保证正常的上课效率、制定一张时间表、当天的
+任务当天完成！</p>
+				</div>
+			</div>
+			<div class="col-md-6 col">
+				<div class="media-left">
+					<a href="#"><img class="media-object" src="img/tab1-4.png" alt=""></a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">服务团队</h4>
+					<p class="media-muted">其他：社会招聘的、服务水平
+参差不齐的普通员工！</p>
+					<p>其他：内部培养、经受过良好高端服务培训的高标准员
+工！</p>
+				</div>
+			</div>						
+		</div>
+	</div>
+</div>
+
+<div class="tab2">
+	<div class="container">
+		<div class="row">	
+			<!--可以给文本和图片设置背景色来查看是否居中-->
+			<!--center-block是居中显示-->
+			<div class="col-md-6 col-sm-6 tab2-img"><!-- style="background:red;"-->
+				<img class="img img-responsive center-block" src="img/tab2.png" alt="">
+			</div>
+			<div class="text col-md-6 col-sm-6 tab2-text"><!-- style="background:blue;"-->
+				<h3>强大的学习体系</h3>
+				<p>经过管理学大师层层把关、让您的企业突飞猛进。</p>					
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="tab3">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-sm-6">
+				<img class="img img-responsive center-block" src="img/tab3.png" alt="">
+			</div>
+			<div class="text col-md-6 col-sm-6">
+				<h3>完美的管理方式</h3>
+				<p>最新的管理培训方案，让您的企业赶超同行。</p>					
+			</div>
+		</div>
+	</div>
+</div>
+<!--注脚-->
+<footer id="footer">
+	<div class="container">
+		<p>企业培训 | 合作事宜 | 版权投诉</p> 
+		<p>苏 ICP 备 12345678. © 2009-2016 瓢城企训网. Powered by Bootstrap.</p> 
+	</div>
+</footer>
+	<a href="javascript:void(0)" id="top" title="返回顶部"></a>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- 放在引入文件后边! -->
+<script type="text/javascript">
+	//返回顶部
+	window.onload=function(){
+			var top = document.getElementById('top');
+			var clientHeight = document.documentElement.clientHeight||document.body.clientHeight;
+			var timer = null;
+			//滚动条发生事件
+			window.onscroll = function(){
+				var hide = document.body.scrollTop||document.documentElement.scrollTop;
+				if(hide>=clientHeight){
+					top.style.display = "block";
+				}else{
+					top.style.display="none";
+				}
+			}
+
+			top.onclick=function(){
+				timer = setInterval(function(){
+					var ontop = document.body.scrollTop||document.documentElement.scrollTop;
+					var speed = Math.floor(-ontop/4);
+					document.body.scrollTop = ontop + speed;
+
+					if(ontop==0){
+					clearInterval(timer);
+					}
+				},50);
+			}
+		}
+	//
+	$('#myCarousel').carousel({
+		interval:3000,
+	});
+	/*$(function(){
+		//设置垂直居中
+		$('.carousel-control').css('line-height',$('.carousel-inner img').height() + 'px');
+		$(window).resize(function(){
+			var $height =   $('.carousel-inner img').eq(0).height()||
+							$('.carousel-inner img').eq(1).height()||
+							$('.carousel-inner img').eq(2).height();
+			$('.carousel-control').css('line-height',$height + 'px');
+		});
+	});*/
+
+	//设置文字垂直居中
+	//谷歌浏览器加载图片的顺序问题。导致高度无法获取。
+	$('.text').eq(0).css('margin-top',($('.img').eq(0).height()-$('.text').eq(0).height())/2 + 'px');
+	$('.text').eq(1).css('margin-top',($('.img').eq(1).height()-$('.text').eq(1).height())/2 + 'px');
+
+	$(window).resize(function(){//当浏览器窗口改变时仍然居中
+	$('.text').eq(0).css('margin-top',($('.img').eq(0).height()-$('.text').eq(0).height())/2 + 'px');
+	$('.text').eq(1).css('margin-top',($('.img').eq(1).height()-$('.text').eq(1).height())/2 + 'px');
+	});
+</script>
+
+</body>
+</html>

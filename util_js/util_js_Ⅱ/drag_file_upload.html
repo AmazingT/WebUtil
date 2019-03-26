@@ -1,0 +1,115 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>h5图片拖拽上传-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+#drop_area {
+	border:2px dashed #BBB;
+	padding:25px 5px;
+	text-align:center;
+	font-size:20pt;
+	color:#BBB;
+	border-radius:5px;
+}
+#drop_area.hovering {
+	-webkit-box-shadow:inset 0px 0px 50px #BBB;
+	-moz-box-shadow:inset 0px 0px 50px #BBB;
+	-o-box-shadow:inset 0px 0px 50px #BBB;
+	box-shadow:inset 0px 0px 50px #BBB;
+}
+.example {
+	margin:40px 25px;
+	padding:10px;
+	border:1px solid #BBB;
+}
+#preview {
+	text-align:left;
+}
+#preview li {
+	margin:10px 0;
+}
+</style>
+</head>
+<body>
+<div class="example ">
+	   <div id="drop_area">将附件拖拽到此区域</div> 
+	    <div id="preview"></div> 
+</div>
+
+<script>
+$(function() {
+
+    var fd = new FormData();
+    var FileIndex = 0;
+    var output = document.getElementById('preview');
+    var dropZone = document.getElementById('drop_area');
+
+    //首先对页面事件做一个判断处理，如果页面中存在并满足下列if条件就触发事件方法。
+    if ((('draggable' in dropZone) && ('ondragenter' in dropZone) && ('ondragleave' in dropZone) && ('ondragover' in dropZone) && window.File && window.FileList && window.FileReader)) {
+        //文件进入事件
+        function handleFileDragEnter(e) {
+            //不再派发事件
+            e.stopPropagation();
+            //取消事件的默认动作
+            e.preventDefault();
+            //为当前元素添加CSS样式（这里使用到的样式均会在下面展示出来）
+            this.classList.add('hovering');
+        }
+
+        //文件离开事件
+        function handleFileDragLeave(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            //为当前元素移除CSS样式
+            this.classList.remove('hovering');
+        }
+
+        //文件拖拽完成效果
+        function handleFileDragOver(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            //把拖动的元素复制到放置目标（注1会给出dropEffect详细属性）。
+            e.dataTransfer.dropEffect = 'copy';
+        }
+
+        //文件拖拽到页面后处理方式
+        function handleFileDrop(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            //为当前元素移除CSS样式
+            this.classList.remove('hovering');
+
+            //target 事件属性可返回事件的目标节点（触发该事件的节点），如生成事件的元素、文档或窗口。
+            var files = e.target.files || e.dataTransfer.files;
+            for (var i = 0,
+            f; f = files[i]; i++) {
+                FileIndex++;
+                //FormData提供的append方法把数据写入到fd中
+                fd.append("FileData_" + FileIndex, files[i]);
+            }
+
+            var files = e.dataTransfer.files;
+            //根据files[]获得的数据，在前台页面写出上传的文件基本信息
+            var outputStr = [];
+            for (var i = 0,
+            f; f = files[i]; i++) {
+                var lastModified = f.lastModifiedDate;
+                var lastModifiedStr = lastModified ? lastModified.toLocaleDateString() + ' ' + lastModified.toLocaleTimeString() : 'n/a';
+                outputStr += '<li><strong>' + f.name + '</strong></li>';
+            }
+            output.innerHTML = '<ul>' + outputStr + '</ul>';
+        }
+
+        //为四种方法生成addEventListener事件监听器，addEventListener有三个参数：第一个参数表示事件名称；第二个参数表示要接收事件处理的函数；第三个参数为 useCapture（一般来说为false，true会更改响应顺序），
+        dropZone.addEventListener('dragenter', handleFileDragEnter, false);
+        dropZone.addEventListener('dragleave', handleFileDragLeave, false);
+        dropZone.addEventListener('dragover', handleFileDragOver, false);
+        dropZone.addEventListener('drop', handleFileDrop, false);
+    }
+});
+</script>
+
+</body>
+</html>

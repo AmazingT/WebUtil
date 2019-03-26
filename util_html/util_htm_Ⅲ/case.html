@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width initial-scale=1,user-scalable=no"><!---禁止缩放user-scalable=no-->
+	<title>项目实战</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<style type="text/css">
+		body{
+			font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif; 
+		}
+		.jumbotron{
+			margin: 50px 0;
+			padding: 60px 0;
+			color: #ccc;
+			background-image: url(img/bg.jpg);
+		}
+		.jumbotron h1{
+			font-size: 26px;
+			padding: 0 20px;
+		}
+		.jumbotron h4 { 
+			font-size: 14px; 
+			padding: 0 20px;
+		}	
+		#case{
+			padding: 40px 0;
+			text-align: center;
+			background: #eee;
+		}
+		#case h4{
+			color: #666;
+		}
+		#case p{
+			color: #666;
+			line-height: 1.6;
+		}
+		#footer{
+			color: #eee;
+			padding: 20px;
+			text-align: center;
+			background: #666;
+			border-top: 1px solid #ccc;
+		}
+		/*媒体查询放前后有区别,放最后！*/
+		@media screen and (min-width:768px){
+		.jumbotron h1{font-size: 30px;}
+		.jumbotron h4 { font-size: 14px;}
+		}
+		@media screen and (min-width:992px){
+		.jumbotron h1{font-size: 33px;}
+		.jumbotron h4 { font-size: 16px;}	
+		}
+		@media screen and (min-width:1200px){
+		.jumbotron h1{font-size: 36px;}
+		.jumbotron h4 { font-size: 18px;}	
+		}	
+	</style>
+</head>
+<body>
+<!--section标签是文档的某个区域-->
+<!-- 位置调整是margin和padding值 -->
+<!-- 头部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand" style="padding:6px 10px;"><img src="../img/douyu.PNG" alt=""></a>
+			<!-- 缩小隐藏按钮 -->
+			<button class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" type="button">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<!-- 响应式(加上折叠collapse) -->
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right" style="margin-top:0;">
+				<li class="line">
+					<a href="practice.html">	
+						<span class="glyphicon glyphicon-home"></span> 首页
+					</a>
+				</li>
+				<li class="line">
+					<a href="information.html">
+						<span class="glyphicon glyphicon-list"></span> 资讯
+					</a>
+				</li>
+				<li class="line">
+					<a href="case.html">
+						<span class="glyphicon glyphicon-fire"></span> 案例
+					</a>
+				</li>
+				<li>
+					<a href="about.html">
+						<span class="glyphicon glyphicon-question-sign"></span> 关于
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<!-- 主体内容 -->
+<div class="jumbotron">
+	<div class="container">
+		<hgroup>
+			<h1>案例</h1>
+			<h4>和各大明星企业有着紧密合作...</h4>
+		</hgroup>
+	</div>
+</div>
+
+<!--案例内容-->
+<div id="case">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+				<div class="thumbnail">
+					<img src="img/case1.jpg" alt="">
+					<div class="caption">
+						<h4>中国移动通信</h4>
+						<p>参与了本机构的总裁管理培训课程，学员反馈意见良好。</p>		
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col">
+				<div class="thumbnail">
+					<img src="img/case2.jpg" alt="">
+					<div class="caption">
+						<h4>中国石化</h4>
+						<p>参与了本机构的总裁管理培训课程，学员反馈意见良好。</p>		
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col">
+				<div class="thumbnail">
+					<img src="img/case3.jpg" alt="">
+					<div class="caption">
+						<h4>中国联通</h4>
+						<p>参与了本机构的总裁管理培训课程，学员反馈意见良好。</p>		
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col">
+				<div class="thumbnail">
+					<img src="img/case4.jpg" alt="">
+					<div class="caption">
+						<h4>中国电信</h4>
+						<p>参与了本机构的总裁管理培训课程，学员反馈意见良好。</p>		
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col">
+				<div class="thumbnail">
+					<img src="img/case3.jpg" alt="">
+					<div class="caption">
+						<h4>中国联通</h4>
+						<p>参与了本机构的总裁管理培训课程，学员反馈意见良好。</p>		
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col">
+				<div class="thumbnail">
+					<img src="img/case4.jpg" alt="">
+					<div class="caption">
+						<h4>中国电信</h4>
+						<p>参与了本机构的总裁管理培训课程，学员反馈意见良好。</p>		
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col">
+				<div class="thumbnail">
+					<img src="img/case1.jpg" alt="">
+					<div class="caption">
+						<h4>中国移动通信</h4>
+						<p>参与了本机构的总裁管理培训课程，学员反馈意见良好。</p>		
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col">
+				<div class="thumbnail">
+					<img src="img/case2.jpg" alt="">
+					<div class="caption">
+						<h4>中国石化</h4>
+						<p>参与了本机构的总裁管理培训课程，学员反馈意见良好。</p>		
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--注脚-->
+<footer id="footer">
+	<div class="container">
+		<p>企业培训 | 合作事宜 | 版权投诉</p> 
+		<p>苏 ICP 备 12345678. © 2009-2016 瓢城企训网. Powered by Bootstrap.</p> 
+	</div>
+</footer>
+
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- 放在引入文件后边! -->
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

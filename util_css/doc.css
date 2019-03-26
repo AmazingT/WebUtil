@@ -1,0 +1,63 @@
+/* 尽可能多的利用硬件能力，如使用3D变形来开启GPU加速 */
+*{
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/* 如动画过程有闪烁（通常发生在动画开始的时候），可以尝试下面的Hack： */
+*{
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+}
+
+/*消除 transition 闪屏
+两个方法
+
+-webkit-transform-style: preserve-3d;
+/*设置内嵌的元素在 3D 空间如何呈现：保留 3D*/
+* { -webkit-backface-visibility: hidden; }
+/*（设置进行转换的元素的背面在面对用户时是否可见：隐藏）*/
+
+/*
+使用 CSS3 动画的时尽量利用3D加速，从而使得动画变得流畅。动画过程中的动画闪白可以通过 backface-visibility 隐藏。
+-webkit-transform-style: preserve-3d;
+-webkit-backface-visibility: hidden;
+*/
+
+/*
+不让 Android 手机识别邮箱
+<meta content="email=no" name="format-detection" />
+禁止 iOS 识别长串数字为电话
+<meta content="telephone=no" name="format-detection" />
+禁止 iOS 弹出各种操作窗口
+-webkit-touch-callout:none
+禁止用户选中文字
+-webkit-user-select:none
+*/
+
+/*
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC","Helvetica Neue",STHeiti,"Microsoft Yahei",Tahoma,Simsun,sans-serif;
+}
+*/
+
+/* background-size: length|percentage|cover|contain;
+length: 设置背景图片的高度和宽度(只设置一个值,第二个值为auto)
+percentage: 以父元素的百分比来设置背景图片的高度和宽度(只设置一个值,第二个值为auto)
+cover: 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在背景定位区域中。
+contain: 把图像图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域。 */
+
+/* 禁用表单input、select元素的默认外观 */
+input, select, button {
+    appearance: none;
+    -webkit-appearance: none;
+}

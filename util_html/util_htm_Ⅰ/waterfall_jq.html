@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery实现瀑布流布局</title>
+	
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			position: relative;
+		}
+		.box{
+			float: left;
+			padding: 15px 0  0 15px;
+		}
+		.pic{
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-shadow: 0 0 5px #ccc;
+		}
+		.pic img{
+			width: 165px;
+			height: auto;
+		}
+	</style>
+	<script src="js/jquery.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/0.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/1.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/2.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/3.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/4.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/5.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/6.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/7.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/8.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/9.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/10.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/11.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/12.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/13.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/14.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/15.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/16.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/17.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/18.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/19.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/20.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/21.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/22.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/23.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/24.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/25.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/26.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/27.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/28.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/29.jpg" alt="">
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(window).on('load',function(){
+			waterfall();
+
+			var dataInt={"data":[{"src":"31.jpg"},{"src":"32.jpg"},{"src":"33.jpg"},{"src":"34.jpg"}]};
+			$(window).on('scroll',function(){
+
+				if(checkScrollSlide()){
+					
+					$.each(dataInt.data,function(key,value){
+						//创建class='box'的div
+						var oBox=$('<div>').addClass('box').appendTo($('#container'));
+						var oPic=$('<div>').addClass('pic').appendTo($(oBox));//jQuery的方法只能由jQuery对象调用!
+						$('<img>').attr('src','imgs/'+$(value).attr('src')).appendTo($(oPic));
+					});
+					waterfall();
+				}
+			});
+		});
+
+		function waterfall(){
+			var oBoxs=$('#container>div');
+			var oBoxW=oBoxs.eq(0).outerWidth();
+			var cols=Math.floor($(window).width()/oBoxW);
+			$('#container').width(oBoxW*cols).css('margin','0 auto');
+
+			var arrHeight=[];
+			oBoxs.each(function(index,value){
+				if(index<cols){
+					arrHeight[index]=oBoxs.eq(index).outerHeight();
+					//arrHeight.push(oBoxs.eq(index).outerHeight());
+				}else{
+					var minHeight=Math.min.apply(null,arrHeight);
+					var minIndex=$.inArray(minHeight,arrHeight);//$.inArray获得minHeight这个值在arrHeight数组中的索引值
+					$(value).css({
+						'position':'absolute',
+						'top':minHeight+'px',
+						'left':minIndex*oBoxW+'px'
+					});
+					arrHeight[minIndex]+=oBoxs.eq(index).outerHeight();
+				}
+			});
+		}
+
+		function checkScrollSlide(){
+			var oBoxLast=$('#container>div').last();
+			var lastBoxH=oBoxLast.offset().top+Math.floor(oBoxLast.outerHeight()/2);
+			var winH=$(window).height()+$(window).scrollTop();
+
+			return (lastBoxH<winH)?true:false;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.title-pic img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.title-pic{
+    margin-bottom: 40px;
+}
+.title-btn{
+    width: 80%;
+    margin: 0 auto;
+}
+.title-btn .btn{
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+}
+.title-btn .select-btn{
+    margin-bottom: 25px;
+    background-color: #6666cc;
+}
+.title-btn .check-btn{
+    background-color: #ff6666;
+}

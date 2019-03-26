@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闪光效果</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			/* background-color: #333; */
+		}
+		.pic{
+			top: 50%;
+			left: 50%;
+			height: 280px;
+			width: 520px;				
+			position: absolute;
+			margin-top:-140px;
+			margin-left: -260px;
+		}
+
+		.pic:before{
+			content: '';
+			width: 30px;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			transform: skew(45deg);
+			margin-left:-170px; /*left:从左至右。值越高,透明度越低。*/
+			-webkit-animation: gradient 2s linear infinite alternate;
+			animation: gradient 2s linear infinite alternate;
+			background: -webkit-linear-gradient(right,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));
+		}
+		@keyframes gradient{
+			0%{transform:skew(45deg) translateX(0);opacity:1;}
+			/* 50%{transform:skew(45deg) translateX(0);opacity:0.5;} */
+			100%{transform:skew(45deg) translateX(830px);opacity:1;}
+		}
+
+		@-webkit-keyframes gradient{
+			0%{transform:skew(45deg) translateX(0);opacity:1;}
+			/* 50%{transform:skew(45deg) translateX(0);opacity:0.5;} */
+			100%{transform:skew(45deg) translateX(830px);opacity:1;}
+		}
+	</style>
+</head>
+<body>
+	<div class="pic">
+		<img src="images/a.jpg" alt="" width:"520" hieght:"280">
+	</div>
+</body>
+</html>

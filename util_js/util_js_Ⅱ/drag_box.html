@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖拽实现</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            background-color: #f60;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        (function() {
+            var box = document.querySelector(".box");
+
+            var drag = function(element) {
+                var getCssAttr = function(o, attr) {
+                    return o.currentStyle ? o.currentStyle[attr] : document.defaultView.getComputedStyle(o, false)[attr];
+                };
+
+                var params = {
+                    top: getCssAttr(element, "top"),
+                    left: getCssAttr(element, "left"),
+                    startX: 0,
+                    startY: 0,
+                    flag: false
+                };
+
+                element.onmousedown = function(e) {
+                    e = e || window.event;
+                    params.flag = true;
+                    params.startX = e.clientX;
+                    params.startY = e.clientY;
+                }
+
+                document.onmousemove = function(e) {
+                    if (params.flag) {
+                        e = e || window.event;
+                        var moveX = e.clientX, moveY = e.clientY;
+                        var disX = moveX - params.startX, disY = moveY - params.startY;
+                        element.style.top = parseInt(params.top) + disY + "px";
+                        element.style.left = parseInt(params.left) + disX + "px";
+                    }
+                }
+
+                document.onmouseup = function() {
+                    params.flag = false;
+                    params.top = getCssAttr(element, "top");
+                    params.left = getCssAttr(element, "left");
+                }
+            }
+
+            drag(box);
+        })();
+    </script>
+</body>
+</html>

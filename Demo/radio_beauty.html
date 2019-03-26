@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>radio单选框优化</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 10px;
+        }
+
+        /* border-radius: 50%在安卓手机端使用rem时不会是圆形 改用px或svg */
+        .radio-wrap {
+            width: 22px;
+            height: 22px;
+            position: relative;
+        }
+        .radio-wrap input.radio {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: block;
+            opacity: 0;
+        }
+        /* 兄弟相邻选择器'+'(选择紧邻其后的一个元素)/'~'(选择其后的所有元素) */
+        .radio-wrap input.radio:checked + .radio-box::before{
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 6px;
+            background-color: red;
+        }
+        .radio-wrap .radio-box {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid red;
+            border-radius: 10px;
+        }
+
+        /* checkbox */
+        /* border-radius: 50%在安卓手机端使用rem时不会是圆形 改用px或svg */
+        .check-wrap {
+            width: 22px;
+            height: 22px;
+            position: relative;
+        }
+        .check-wrap input.check {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: block;
+            opacity: 0;
+        }
+        /* 兄弟相邻选择器'+'(选择紧邻其后的一个元素)/'~'(选择其后的所有元素) */
+        .check-wrap input.check:checked + .check-box::before{
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 6px;
+            background-color: #00ab84;
+        }
+        .check-wrap .check-box {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+
+        /* checkbox */
+        .check-wrapper {
+            width: 17px;
+            height: 17px;
+            position: relative;
+        }
+        .check-wrapper input.check {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: block;
+            /* outline: none;
+            -webkit-appearance: none; */
+            opacity: 0;
+        }
+        /* 兄弟相邻选择器'+'(选择紧邻其后的一个元素)/'~'(选择其后的所有元素) */
+        .check-wrapper input.check:checked + .check-box{
+            background: url(images/icon-yes.png) no-repeat center;
+            background-size: 12px 12px;
+        }
+        .check-wrapper .check-box {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #999;
+            border-radius: 2px;
+        }
+
+        /* select */
+        .select {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            display: inline-block;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            border: 1px solid rgb(217, 217, 217);
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            transition: background-color .3s, border-color .4s;
+            -webkit-transition: background-color .3s, border-color .4s;
+        }
+
+        .select::before {
+            content: '';
+            width: 4px;
+            height: 8px;
+            position: absolute;
+            top: 1px;
+            left: 4px;
+            opacity: 0;
+            transition: opacity .4s;
+            -webkit-transition: opacity .4s;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .select:checked {
+            border-color: rgb(24, 144, 255);
+            background-color: rgb(24, 144, 255);
+        }
+
+        .select:checked::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="radio-wrap">
+        <input class="radio" type="radio" />
+        <div class="radio-box"></div>
+    </div>
+
+    <div class="check-wrap">
+        <input class="check" type="checkbox" />
+        <div class="check-box"></div>
+    </div>
+
+    <div class="check-wrapper">
+        <input class="check" type="checkbox" />
+        <div class="check-box"></div>
+    </div>
+
+    <input class="select" type="checkbox"/>
+</body>
+</html>

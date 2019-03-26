@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮刮卡-canvas实现</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas></canvas>
+    </div>
+
+    <script type="text/javascript">
+        /* 拿到canvas的DOM对象 */
+        var canvas = document.querySelector('canvas');
+        /* 返回canvas的上下文 */
+        var ctx = canvas.getContext('2d');
+        
+        /* 中奖和未中奖两个图片 */
+        var imgs = ['images/bg_1.jpg', 'images/bg_2.jpg'];
+        /* 随机生成0或1 */
+        var num = Math.floor(Math.random() * 2);
+        /* 实例化一个图片类 */
+        var img = new Image();
+        /* 图片的实例对象设置图像url */
+        img.src = imgs[num];
+        /* 设置背景 */
+        canvas.style.backgroundImage = 'url(' + img.src + ')';
+
+        img.addEventListener('load', function (e) {
+            var w = img.width, /* 获取图片宽 */
+                h = img.height; /* 获取图片高度 */
+            var offsetX = canvas.offsetLeft; /* 获取canvas相对于左边界的偏移 */
+            offsetY = canvas.offsetTop;
+            var mousedown = false; /* 防止手势操作滑出手机边界 */
+            
+            /* 设置宽度 */
+            canvas.width = w;
+            canvas.height = h;
+
+            /* 绘制蒙层 */
+            ctx.fillStyle = 'gray';/* 蒙层颜色 */
+            ctx.fillRect(0, 0, w, h);/* 蒙层位置和大小 */
+
+            /* 鼠标或手势按下时触发的事件回调 */
+            canvas.touchstart = canvas.onmousedown = function(e) {
+                e.preventDefault();
+                mousedown = true;
+            }
+
+            /* 鼠标或者手势松开时触发的事件回调 */
+            canvas.touchup = canvas.onmouseup = function(e) {
+                e.preventDefault();
+                mousedown = false;
+            }
+
+            /* 鼠标或者手势移动时触发的事件回调 */
+            canvas.touchmouve = canvas.onmousemove = function(e) {
+                e.preventDefault();
+                if (mousedown) {
+                    /* 拿到TouchList对象中最后一个事件对象 */
+                    if (e.changedTouches) {
+                        e = e.changedTouches[e.changedTouches.length - 1];
+                    }
+                    /* 获得当前鼠标或者手势的坐标 */
+                    var x = (e.clientX + document.body.scrollLeft || e.pageX) - offsetX || 0,
+                        y = (e.clientY + document.body.scrollTop || e.pageY) - offsetY || 0;
+                    
+                    // 在源图像外显示目标图像。只有源图像外的目标图像部分会被显示，源图像是透明的。    
+                    ctx.globalCompositeOperation = 'destination-out';
+                    /* 创建一个新的路径 */
+                    ctx.beginPath();
+                    /* 绘制弧线 */
+                    ctx.arc(x, y, 20, 0, Math.PI * 2);
+                    /* 填充路径 */
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

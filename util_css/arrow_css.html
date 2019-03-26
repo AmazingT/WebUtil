@@ -1,0 +1,259 @@
+﻿<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>纯css作箭头-jq22.com</title>
+	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		.box {
+			width: 800px;
+			margin: 10px auto;
+			background: #fff;
+		}
+
+		.box p {
+			color: #333;
+		}
+
+		.arrow_box {
+			width: 30px;
+			height: 30px;
+			margin: 20px 0;
+			position: relative;
+			cursor: pointer;
+		}
+
+		/*右箭头*/
+		.right {
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			/*border:1px solid blue;
+	*/
+		}
+
+		.right-arrow1,
+		.right-arrow2 {
+			width: 0;
+			height: 0;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			border-top: 10px transparent dashed;
+			border-right: 10px transparent dashed;
+			border-bottom: 10px transparent dashed;
+			border-left: 10px #fff solid;
+			overflow: hidden;
+		}
+
+		.right-arrow1 {
+			left: 1px;
+			/*重要*/
+			border-left: 10px #333 solid;
+		}
+
+		.right-arrow2 {
+			border-left: 10px #fff solid;
+		}
+
+		/*左箭头*/
+		.left {
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 2;
+			/*兼容ie8-*/
+			/*border:1px solid blue;
+	*/
+		}
+
+		.left-arrow1,
+		.left-arrow2 {
+			width: 0;
+			height: 0;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 5;
+			/*兼容ie8-*/
+			border-top: 10px transparent dashed;
+			border-left: 10px transparent dashed;
+			border-bottom: 10px transparent dashed;
+			border-right: 10px white solid;
+			overflow: hidden;
+		}
+
+		.left-arrow1 {
+			border-right: 10px #333 solid;
+		}
+
+		.left-arrow2 {
+			left: 1px;
+			/*重要*/
+			border-right: 10px #fff solid;
+		}
+
+		/*上箭头*/
+		.top {
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 2;
+			/*兼容ie8-*/
+			/*border:1px solid blue;
+	*/
+		}
+
+		.top-arrow1,
+		.top-arrow2 {
+			width: 0;
+			height: 0;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 5;
+			/*兼容ie8-*/
+			border-top: 10px transparent dashed;
+			border-left: 10px transparent dashed;
+			border-right: 10px transparent dashed;
+			border-bottom: 10px white solid;
+			overflow: hidden;
+		}
+
+		.top-arrow1 {
+			border-bottom: 10px #333 solid;
+		}
+
+		.top-arrow2 {
+			top: 1px;
+			/*重要*/
+			border-bottom: 10px #fff solid;
+		}
+
+		/*下箭头*/
+		.bottom {
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 2;
+			/*兼容ie8-*/
+			/*border:1px solid blue;
+	*/
+		}
+
+		.bottom-arrow1,
+		.bottom-arrow2 {
+			width: 0;
+			height: 0;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 5;
+			/*兼容ie8-*/
+			border-bottom: 10px transparent dashed;
+			border-left: 10px transparent dashed;
+			border-right: 10px transparent dashed;
+			border-top: 10px white solid;
+			overflow: hidden;
+		}
+
+		.bottom-arrow1 {
+			top: 1px;
+			/*重要*/
+			border-top: 10px #333 solid;
+		}
+
+		.bottom-arrow2 {
+			border-top: 10px #fff solid;
+		}
+
+		.box .arrow {
+			width: 0px;
+			height: 0px;
+			border: 10px solid #333;
+			margin: 10px;
+		}
+
+		/*右箭头*/
+		.box .arrow_you2 {
+			border-bottom: 10px transparent solid;
+			border-right: 10px transparent solid;
+			border-left: 10px #333 solid;
+			border-top: 10px transparent solid;
+		}
+
+		/*左箭头*/
+		.box .arrow_zuo2 {
+			border-bottom: 10px transparent solid;
+			border-left: 10px transparent solid;
+			border-right: 10px #333 solid;
+			border-top: 10px transparent solid;
+		}
+
+		/*上箭头*/
+		.box .arrow_top2 {
+			border-left: 10px transparent solid;
+			border-right: 10px transparent solid;
+			border-bottom: 10px #333 solid;
+			border-top: 10px transparent solid;
+		}
+
+		/*下箭头*/
+		.box .arrow_bottom2 {
+			border-bottom: 10px transparent solid;
+			border-right: 10px transparent solid;
+			border-top: 10px #333 solid;
+			border-left: 10px transparent solid;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<p> 右箭头</p>
+		<div class="arrow_you arrow_box">
+			<b class="right"><i class="right-arrow1"></i><i class="right-arrow2"></i></b>
+		</div>
+		<div class="arrow_you2 arrow"></div>
+		<p> 左箭头</p>
+		<div class="arrow_zuo arrow_box">
+			<b class="left"><i class="left-arrow1"></i><i class="left-arrow2"></i></b>
+		</div>
+		<div class="arrow_zuo2 arrow"></div>
+		<p> 上箭头</p>
+		<div class="arrow_top arrow_box">
+			<b class="top"><i class="top-arrow1"></i><i class="top-arrow2"></i></b>
+		</div>
+		<div class="arrow_top2 arrow"></div>
+		<p> 下箭头</p>
+		<div class="arrow_bottom arrow_box">
+			<b class="bottom"><i class="bottom-arrow1"></i><i class="bottom-arrow2"></i></b>
+		</div>
+		<div class="arrow_bottom2 arrow"></div>
+	</div>
+
+	<script>
+
+	</script>
+
+</body>
+
+</html>

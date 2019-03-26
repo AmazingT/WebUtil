@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格</title>
+    <style>
+        html,
+        body {
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        table.table-bordered tbody tr td {
+            border: 1px solid #666;
+        }
+
+        table.table-bordered {
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table.table-bordered tbody tr td.split {
+            width: 140px;
+            position: relative;
+        }
+
+        table.table-bordered tbody tr td.split::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 155px;
+            background-color: #666;
+            transform-origin: 0 0;
+            transform: rotate(-65deg);
+        }
+
+        table.table-bordered tbody tr td.split > div {
+            width: 50%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <table class="table-bordered" width="400" height="100" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td>姓名</td>
+                <td colspan="2">电话</td>
+            </tr>
+            <tr>
+                <td>Bill Gates</td>
+                <td>555 77 854</td>
+                <td>555 77 855</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr/>
+
+    <table class="table-bordered" width="400" height="100" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td>姓名</td>
+                <td>Bill Gates</td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="split">
+                    <div>电话</div>
+                    <div>手机</div>
+                </td>
+                <td>555 77 854</td>
+            </tr>
+            <tr>
+                <td>555 77 855</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

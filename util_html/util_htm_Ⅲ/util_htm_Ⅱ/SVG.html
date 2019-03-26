@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>SVG</title>
+
+	<link rel="stylesheet" href="dist/css/swiper-3.4.2.min.css">
+	<link rel="stylesheet" href="dist/css/animate.min.css">
+
+	<script src="dist/js/swiper-3.4.2.min.js"></script>
+	<script src="dist/js/swiper.animate1.0.2.min.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+		}
+		.yy {
+			stroke-width: 1;
+			stroke: #ff7700;
+			animation: lineMove 3s ease-out infinite;
+		}
+
+		@keyframes lineMove {
+			0% {
+				stroke-dasharray: 0, 378;/*为什么是378？*/
+			}
+
+			50% {
+				stroke-dasharray: 378, 378;
+				fill: rgba(0, 0, 0, 0);
+				opacity: 1;
+			}
+
+			100% {
+				stroke-dasharray: 378, 378;
+				fill: rgba(255, 119, 0, .5);
+				opacity: 0;
+			}
+
+		}
+
+		.circle-load-svg{
+			stroke-dasharray: 0 570;/*为什么是570？*/
+			animation: rot 8s linear infinite;
+		}
+
+		@keyframes rot {
+			100%{
+				stroke-dasharray: 570 570;
+			}
+		}
+		
+		.svg-border-animation{
+			position: relative;
+			width: 320px;
+			height: 60px;
+			margin-left: 200px;
+		}
+		.hover-text{
+			position: absolute;
+			top: 0;
+			line-height: 60px;
+			width: 320px;
+			color: #333;
+			font-size: 28px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.shape{
+			fill: transparent;
+			stroke-width: 4px;
+			stroke: #333;
+			stroke-dasharray: 160 520;/*为什么是520？*/
+			stroke-dashoffset: -460;
+		}
+
+		.svg-border-animation:hover .hover-text{
+			transition: .5s;
+			color: #3F51B5;
+		}
+		.svg-border-animation:hover .shape{
+			animation: draw 0.5s linear forwards;
+		}
+
+		@keyframes draw{
+			100%{
+				stroke-dasharray: 760;
+				stroke-dashoffset: 0;
+				/* stroke-width: 2px; */
+				/* stroke: #3F51B5; */
+			}
+		}
+
+		#line{
+			stroke-dasharray: 0 460;
+			animation: line 1s linear infinite;
+		}
+
+		@keyframes line{
+			100%{
+				stroke-dasharray: 460;
+			}
+		}
+
+		.container{
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		.image{
+			position: absolute;
+		}
+		.image_text1{
+			top: 305px;
+		    right: 50px;
+		    width: 335px;
+		    height: 125px;
+		    z-index: 100;
+		    background: url(images/t-1.png) no-repeat;
+		    background-size: cover;
+		}
+		.image_pic1{
+			top: 364px;
+		    left: 117px;
+		    width: 800px;
+		    height: 665px;
+		    z-index: -1;
+		    background: url(images/pic1.png) no-repeat;
+		    background-size: cover;
+		}
+		.image_text2{
+			top: 860px;
+		    left: 0;
+		    width: 440px;
+		    height: 300px;
+		    z-index: 100;
+		    background: url(images/t-2.png) no-repeat;
+		    background-size: cover;
+		}
+		.image_pic2{
+			top: 1100px;
+		    left: 0;
+		    width: 600px;
+		    height: 400px;
+		    z-index: 100;
+		    background: url(images/pic2.png) no-repeat;
+		    background-size: cover;
+		}
+		.image_point{
+			top: 1100px;
+		    right: 0;
+		    width: 480px;
+		    height: 600px;
+		    z-index: 100;
+		    background: url(images/point.png) no-repeat;
+		    background-size: cover;
+		}
+	</style>
+</head>
+<body>
+	<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="300">
+	<defs>
+	    <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+	        <path stroke="#F0F0F0" fill="none" d="M0,0H20V20"></path>
+	    </pattern>
+	</defs>
+	<rect width="1200" height="1000" fill="url(#grid)"></rect>
+	<text id="sintext" x="100" y="160" style="font-size: 14px;"></text>
+	<path d="M100,0V200M0,100H200" transform="translate(0,60)" stroke="red" />
+	</svg>
+	<svg xmlns="http:www.w3.org/2000/svg" width="100%" height="300">
+	    <path id="path" d="M 100 200 Q 200 100 300 200 T 620 200" stroke="rgb(0,255,0)" fill="none" />
+	    <text style="font-size: 24px;">
+	        <textPath xlink:href="#path">
+	            这个文字先上去，又下来。Upside down in english !
+	        </textPath>
+	    </text>
+	</svg>
+	<svg xmlns="http:www.w3.org/2000/svg" width="100%" height="600">
+	    <path id="path1" d="M 100 200 Q 200 100 300 200 T 500 200" stroke="rgb(0,255,0)" fill="none"></path>
+	    <path id="path2" d="M100,300l100-50,200,100,100,-50" stroke="rgb(255,0,0)" fill="none"></path>
+	    <path id="path3" d="M100,400A400,300,0,0,0,500,400" stroke="rgb(0,0,255)" fill="none"></path>
+	</svg>
+	<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="210" height="200" x="0" y="0" viewbox="0 0 100 100">
+	    <path class="yy" fill-rule="evenodd" clip-rule="evenodd" fill="none" d="M43.4,0.2c1.4,1.5,0.9,4,0.2,5.8c2-0.5,3.3-0.7,4.1-2.4
+	            c0.1,0.2,0.2,0.3,0.2,0.5c0.8,1.3-0.3,3.5,0.7,3.8c1.6,0.6,3.2,1.1,4.8,1.7c3.8-3.3,15.2-6,20.6-2.4c1.3,4.4,2.1,11.5,0.7,16.8
+	            c-0.6,1.6-1.3,3.2-1.9,4.8c-0.5,3,3.1,8.9,2.2,13.9c-1.4,7.4-6.1,11.1-8.9,15.8c5.3,1,9.1-3.1,16.3-1.7c10.3,2,18.4,13.5,10.6,24
+	            c-2.2,2.9-8.2,6.5-13.9,5.5c-3.1-0.5-7.2-1.5-10.6-0.7c-6.5,1.6-10.9,7.3-16.8,9.8c-1.9,0.8-7,1.4-9.1,0.2c-0.8-0.4-0.4-1.4-1.7-1.4
+	            c-1-0.1-6.3-0.3-7.2,0c-1.9,0.6-3.2,2.7-7.4,1.9c-7.7-1.5-12.8-11.4-12.7-20.9c-1,0.7-2.5,2-4.3,1.2c-0.4-0.2-0.8-0.5-1.2-0.7
+	            c-0.8-2.6,1.9-11,1.9-11c1.3-2.8,4.5-4.2,6.5-6.5c-0.2-0.2-0.5-0.3-0.7-0.5c-8.1-4-17.5-6.2-15.1-20.4c0.6-3,1.3-5.9,1.9-8.9
+	            C1.9,24.5-3.1,10.1,2.4,6.7c4.8-4.3,16.8,0.9,19.9,2.9c2.1-0.6,4.2-1.3,6.2-1.9c1.5-0.8,2.7-2.6,4.6-3.4C37.7,2.5,41.6,4.7,43.4,0.2
+	            z" />
+	</svg>
+	<svg width="100%" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	    <rect id="rec" x="300" y="100" width="300" height="100" style="fill:lime">
+	        <animate attributeName="x" attributeType="XML" begin="0s" dur="6s" fill="freeze" from="300" to="0" />
+	        <animate attributeName="y" attributeType="XML" begin="0s" dur="6s" fill="freeze" from="100" to="0" />
+	        <animate attributeName="width" attributeType="XML" begin="0s" dur="6s" fill="freeze" from="300" to="800" />
+	        <animate attributeName="height" attributeType="XML" begin="0s" dur="6s" fill="freeze" from="100" to="300" />
+	        <animateColor attributeName="fill" attributeType="CSS" from="lime" to="red" begin="2s" dur="4s" fill="freeze" />
+	    </rect>
+	    <g transform="translate(100,100)">
+	        <text id="TextElement" x="0" y="0" style="font-family:Verdana;font-size:24; visibility:hidden"> It's SVG!
+	            <set attributeName="visibility" attributeType="CSS" to="visible" begin="1s" dur="5s" fill="freeze" />
+	            <animateMotion path="M 0 0 L 100 100" begin="1s" dur="5s" fill="freeze" />
+	            <animateColor attributeName="fill" attributeType="CSS" from="red" to="blue" begin="1s" dur="5s" fill="freeze" />
+	            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="-30" to="0" begin="1s" dur="5s" fill="freeze" />
+	            <animateTransform attributeName="transform" attributeType="XML" type="scale" from="1" to="3" additive="sum" begin="1s" dur="5s" fill="freeze" />
+	        </text>
+	    </g>
+	</svg>
+	<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240">
+	    <circle cx="110" cy="110" r="90" stroke-width="20" stroke="#ccc" fill="none"></circle>
+	    <circle cx="110" cy="110" r="90" stroke-width="20" stroke="#f60" fill="none" class="circle-load-svg"></circle>
+	</svg>
+	<hgroup class="svg-border-animation">
+	    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60">
+	        <rect class="shape" height="60" width="320"></rect>
+	        <div class="hover-text">HOVER ME</div>
+	    </svg>
+	</hgroup>
+	<!-- 动画 -->
+	<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+	    <path id="an" d="M100,400Q150,300 250,400 T400,400" stroke="red" fill="none"></path>
+	    <rect width="20" height="20" fill="red">
+	        <animateMotion rotate="auto" dur="3s" fill="freeze">
+	            <mpath xlink:href="#an"></mpath>
+	        </animateMotion>
+	    </rect>
+	</svg>
+	<svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="100%" height="400">
+	    <path id="line" d="M 100 200 Q 200 100 300 200 T 500 200" stroke="#0AA16F" fill="none" stroke-width="5px"></path>
+	</svg>
+
+	<div class="container">
+		<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="86.33399200439453 -8 527.666015625 1152" enable-background="new 0 0 640 1136" xml:space="preserve">
+			<defs>
+				<style>
+					#path1{
+						z-index: 0;
+						stroke-dashoffset: 1e-05;
+						stroke-dasharray: 0 2518.12;
+						display: block;
+						animation: extend 8s linear infinite;
+					}
+					@keyframes extend{
+						100%{
+							stroke-dasharray: 2518.12;
+						}
+					}
+				</style>
+			</defs>
+		    <path  fill="none" stroke="#FFD201" stroke-width="8" stroke-miterlimit="10" d="M405,1136c0,0,10.5-39-74.5-119.5S169,785,353,698
+			l101-46.5c0,0,152-61.5,66-178.5c0,0-33.667-37.333-79-27.333v-52h-7.333l0.667-49h-7v-29.333h-37v29.333H382v49h-8v50.667h-19.666
+			V281.667h-8.667V267H307v14h-10.333v161.667c0,0-152.334,38.999-173-71.667c0,0-29.333-119.333,131.333-130
+			S500.331,120.337,433.665,0" id="path1" data-svg-origin="0 0"></path>
+		</svg>
+
+
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<section class="swiper-slide">
+					<div class="image image_text1"></div>
+					<div class="image image_pic1"></div>
+					<div class="image image_text2"></div>
+					<div class="ani image image_pic2" swiper-animate-effect="slideInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="1.5s"></div>
+					<div class="image image_point"></div>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<script>        
+	  var mySwiper = new Swiper('.swiper-container', {
+	  	onInit: function(swiper) { //Swiper2.x的初始化是onFirstInit
+	  		swiperAnimateCache(swiper); //隐藏动画元素 
+	  		swiperAnimate(swiper); //初始化完成开始动画
+	  	},
+	  	onSlideChangeEnd: function(swiper) {
+	  		swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+	  	}
+	  })
+  </script>
+	<script>
+		var obj = document.querySelector("#line");
+		var length = obj.getTotalLength();
+
+		console.log(length); // 377.0433
+	</script>
+	<script>
+		/**
+		 * String.slice/Array.slice方法返回下标start到end之间的值(不含最后一个)
+		 * slice方法可以将类数组对象(如DOM对象)/集合或者是具有length属性的对象转化为数组(IE9+)
+		 * eg: Array.prototype.slice.call(arguments); //转化成对象并改变this指向
+		 * eg: 简化=> [].slice.call(arguments);
+		 * eg: document.getElementById('#id') && [].slice.call(document.getElementsByTagName('div')).forEach(function(value,index,array) { ...... });
+		 */
+
+		// y = s * sin(w * x + t)
+		// x = [20,20,20......]
+		var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		var n = str.length,
+			x = [],
+			y = null,
+			i = n,
+			s = 100,//波峰波谷
+			w = 0.02,
+			t = 0;
+
+		var NS = "http://www.w3.org/2000/svg";
+		var sintext = document.getElementById('sintext');
+		//var word = str.split('');
+
+		while(i--) {//25
+			x.push(20);
+			var tspan = document.createElementNS(NS, 'tspan');
+			tspan.textContent = str[n - i - 1];//从0开始
+			sintext.appendChild(tspan);
+			var h = Math.round(360 / 26 * i);//色环是360°
+			tspan.setAttribute('fill', 'hsl('+ h +', 100%, 80%)');
+		}
+
+		function arrange(t) {
+			y = [];
+			var ly = 0,cy;
+			for(i = 0; i < n; ++i) {
+				cy = -s * Math.sin(w * i * 20 + t);//三角函数
+				y.push(cy - ly);
+				ly = cy;
+			}
+		}
+
+		function render() {
+			sintext.setAttribute('dx', x.join(' '));
+			sintext.setAttribute('dy', y.join(' '));
+		}
+
+		function animate() {
+			t += 0.05;
+			arrange(t);
+			render();
+			requestAnimationFrame(animate);
+		}
+		animate();
+	</script>
+</body>
+</html>

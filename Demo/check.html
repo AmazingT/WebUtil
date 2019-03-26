@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择题</title>
+    <link rel="stylesheet" href="css/check.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <section class="container">
+        <header>巴图题库</header>
+        <div class="content" v-show="checkFlag">
+            <div class="select-btn">
+                <div class="btn">选择题</div>
+            </div>
+            <ul class="select-list" v-for="(item,index) in subject">
+                <li @click="getChapter(index)">
+                    <div class="chapter">{{item.chapter}}</div>
+                    <div class="title">{{item.desc}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content" v-show="!checkFlag">
+            <div class="pic">
+                <img src="img/banner.png" alt="">
+            </div>
+            <div class="router">
+                <span @click="getChapter">选择题</span>
+                <span>></span>
+                <span>{{chapter.chapter}} {{chapter.desc}}</span>
+            </div>
+            <div class="subject-item">
+                <div class="item" v-for="list in chapter.list">
+                    <div class="title">{{list.id}}、{{list.title}}</div>
+                    <ul class="subject" v-for="topic in list.topic">
+                        <li class="yes"><label><input type="radio" name="topic"/><span>A : {{topic.A}}</span></label></li>
+                        <li class="no"><label><input type="radio" name="topic"/><span>B : {{topic.B}}</span></label></li>
+                        <li><label><input type="radio" name="topic"/><span>C : {{topic.C}}</span></label></li>
+                        <li><label><input type="radio" name="topic"/><span>D : {{topic.D}}</span></label></li>
+                    </ul>
+                    <div class="correct">正确答案 : A</div>
+                    <div class="btn-wrapper">
+                        <div class="btn btn-prev" v-show="item.id!=1?true:false">上一题</div>
+                        <div class="btn btn-next">下一题</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '.container',
+            data: {
+                checkFlag: true,               
+                subject: [
+                    {   
+                        id: 1,
+                        chapter: "第一章",
+                        desc: "社会主义的挖墙脚",
+                        list: [
+                            {   id: 1,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            },
+                            {   id: 2,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            },
+                            {   id: 3,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {   
+                        id: 2,
+                        chapter: "第二章",
+                        desc: "社会主义的挖墙脚",
+                        list: [
+                            {   id: 1,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            },
+                            {   id: 2,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            },
+                            {   id: 3,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {   
+                        id: 3,
+                        chapter: "第三章",
+                        desc: "社会主义的挖墙脚",
+                        list: [
+                            {   id: 1,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            },
+                            {   id: 2,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            },
+                            {   id: 3,
+                                title: '会车中遇到对方来车行进有困难需借道时，应怎样做？',
+                                topic: [
+                                    {
+                                        A: '不侵占对方道路，正常行驶',
+                                        B: '示意对方停车让行',
+                                        C: '靠右侧加速行驶',
+                                        D: '尽量礼让对方先行'
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                chapter: null
+            },
+            methods: {
+                getChapter: function (chapter) {
+                    console.log(chapter);
+                    this.checkFlag = !this.checkFlag;
+                    this.chapter = this.subject[chapter];
+                }
+            }
+        });
+    </script>
+</body>
+</html>

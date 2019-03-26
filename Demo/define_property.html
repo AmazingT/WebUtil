@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双向数据绑定实例</title>
+</head>
+<body>
+    <div>
+        <input type="text"/>
+        <span id="show-txt"></span>
+    </div>
+
+    <script>
+        (function() {
+            var input = document.querySelector('input[type="text"]');
+            var txt = document.getElementById('show-txt');
+            var obj = {};
+
+            Object.defineProperty(obj, 'desc', {
+                get: function() {
+                    return;
+                },
+                set: function(newVal) {
+                    var content = txt.textContent;
+                    if (content == newVal) return;
+                    txt.textContent = newVal;
+                }
+            })
+
+            input.oninput = function(e) {
+                // txt.textContent =  e.target.value;
+                obj.desc = e.target.value;
+            }
+        })();
+    </script>
+</body>
+</html>

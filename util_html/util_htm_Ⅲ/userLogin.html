@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录-乐卖网</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="shortcut icon" type="text/css" href="img/favicon.ico" >
+
+	<style type="text/css">
+		li{
+			list-style: none;
+		}
+		.header {
+			height: auto;
+			padding-top: 20px;
+		}
+		.header a{
+			width: 120px;
+			height: 105px;
+			display: block;
+			float: left;
+			background: url(img/order2.jpg) no-repeat;
+			background-size: 100%;
+			text-indent: -999px;
+		}
+		.header .header-title{
+			float: left;
+			height: 105px;
+			color: #0076c3;
+			font-size: 25px;
+			font-family: "华文行楷";
+			font-weight: 600;
+			line-height:105px;
+		}
+		.clearfix {
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.login{
+			margin-top: 20px;
+		}
+		.login .img-box{
+			float: left;
+		}
+		.login .login-box{
+			float: left;
+			width: 340px;
+			margin: 0 50px;
+			padding: 12px 25px;
+			border: 1px solid #dfe8f2;
+			background-color: #fafafa;
+			border-radius: 4px;
+		}
+		.login-content .code{
+			width: 40%;
+			display: inline-block;
+		}
+		.login-content .forget{
+			float: right;
+			color: #78b70e;
+		}
+		.footer{
+			margin-top: 50px;
+		}
+		.footer .footer-top{
+			text-align: center;	
+			border-top: 1px solid #eee;
+			border-bottom: 1px solid #eee;
+		}
+		.footer .footer-top a{
+			padding: 10px;
+			display: inline-block;
+		}
+		.footer .footer-top a.last{
+			border-right: none;
+		}
+		.footer .footer-bottom{
+			color: #999;
+			padding: 10px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<header class="header clearfix">
+			<a href="">乐外卖</a>
+			<span class="header-title">足不出户 尽享美味</span>
+		</header>
+
+		<div class="login clearfix">
+			<div class="img-box">
+				<img src="img/logo-login.jpg" alt="" width="480" height="370">
+			</div>
+
+			<div class="login-box">
+				<div class="login-box-in">
+					<div class="login-heder">
+						<h3>登 录</h3>
+					</div>
+					
+					<div class="login-content">					
+						<div class="login-result">用户名错误!</div><!-- 登录结果提示区 -->
+						<form>
+							<div class="form-group">
+								<div class="input-group">
+      								<div class="input-group-addon"><i class="icon-user"></i></div>
+							  		<input class='form-control' type='text' name='username' placeholder='用户名'>
+							  	</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+     								<div class="input-group-addon"><i class="icon-lock"></i></div>
+							   		<input class='form-control' type='password' name='password' placeholder='密码'>
+							   	</div>
+							</div>
+							<div class="form-group">
+								<input class='form-control code' type='text' name='code' placeholder='验证码'>							
+								<img src='ImageServlet' alt='验证码' width="100" height="30"/>
+								<a href='javascript:reloadCode();' class='change'>换一张</a>
+							</div>
+							<div class='form-group'>
+								<div class="checkbox">
+									<label for="autologin">
+										<input id="autologin" type="checkbox">记住密码
+									</label>
+									<a href='#' class="forget">忘记密码？</a>
+								</div>	
+							</div>
+							<div class="form-group">
+								<button type='button' class='btn btn-success form-control' name="login">登 录</button>
+							</div>
+							<div class="form-group">
+								<p>还没账号？<a href="">立即注册</a></p>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer">
+			<div class="footer-top">
+				<a href="">关于乐卖</a>
+				<span>|</span>
+				<a href="">加入我们</a>
+				<span>|</span>
+				<a href="">我要开店</a>
+				<span>|</span>
+				<a href="">联系我们</a>
+				<span>|</span>
+				<a href="">帮助中心</a>
+			</div>
+			<div class="footer-bottom">
+				<p>©<span>2017</span> 乐卖网上订餐系统 lemai.com 京ICP证xxx号 京公网安备xxxx号</p>
+			</div>
+		</footer>
+	</div>
+
+	<script src="js/jquery-3.1.0.min.js" />
+	<script src="js/bootstrap.min.js" />
+</body>
+</html>

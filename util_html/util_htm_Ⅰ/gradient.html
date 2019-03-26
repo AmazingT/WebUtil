@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 线性渐变效果</title>
+
+	<style type="text/css">
+		body{
+			background-color: #333;
+		}
+		.banner{
+			position: relative;
+			margin: 0 auto;
+			width: 520px;
+			height: 280px;
+		}
+		.banner:before{
+			content: '';
+			width: 30px;
+			height: 100%;
+			position: absolute;
+			left: 50%;
+			margin-left: -15px;
+			top: 0;
+			transform: skewX(30deg);
+			opacity: 0;
+			background: linear-gradient(right,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));
+			background: -webkit-linear-gradient(right,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));
+		}
+
+		.banner:after{
+			content: '';
+			width: 30px;
+			height: 100%;
+			position: absolute;
+			left: 50%;
+			margin-left: -15px;
+			top: 0;
+			transform: skewX(30deg);
+			opacity: 0;
+			background: linear-gradient(right,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));
+			background: -webkit-linear-gradient(right,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));
+		}
+		/*光线动画样式*/
+		.banner:before{
+			animation: light_1 2.5s linear infinite;
+			-webkit-animation: light_1 2.5s linear infinite;
+		}
+		@keyframes light_1{
+			0%{transform:skewX(30deg) translateX(0) ;opacity: 0;}
+			20%{transform:skewX(30deg) translateX(0) ;opacity:0.5;}
+			100%{transform:skewX(30deg) translateX(340px) ;opacity: 0.8;}
+		}
+		@-webkit-keyframes light_1{
+			0%{transform:skewX(30deg) translateX(0) ;opacity: 0;}
+			20%{transform:skewX(30deg) translateX(0) ;opacity:0.5;}
+			100%{transform:skewX(30deg) translateX(340px) ;opacity: 0.8;}
+		}
+	
+		.banner:after{
+			animation: light_2 2.5s linear infinite;
+			-webkit-animation: light_2 2.5s linear infinite;
+		}
+		@keyframes light_2{
+			0%{transform:skewX(30deg) translateX(0) ;opacity: 0;}
+			20%{transform:skewX(30deg) translateX(0) ;opacity:0.5;}
+			100%{transform:skewX(30deg) translateX(-340px) ;opacity: 0.8;}
+		}
+		@-webkit-keyframes light_2{
+			0%{transform:skewX(30deg) translateX(0) ;opacity: 0;}
+			20%{transform:skewX(30deg) translateX(0) ;opacity:0.5;}
+			100%{transform:skewX(30deg) translateX(-340px) ;opacity: 0.8;}
+		}
+	</style>
+</head>
+<body>
+	<div class="banner">
+		<img src="images/a.jpg" alt="" width:"520" hieght:"280">
+	</div>
+</body>
+</html>

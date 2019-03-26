@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<title>星级评分原理与实现(上)</title>
+	<style>
+		body,ul,li{
+			padding: 0;
+			margin: 0;
+		}
+		li{
+			list-style-type: none;
+		}
+		.rating{
+			width: 150px;
+			height: 30px;
+			margin: 100px auto;
+		}
+		.rating-item{
+			float: left;
+			width: 30px;
+			height: 30px;
+			cursor: pointer;
+			background: url('images/star.png') no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<!-- 第一种方式 -->
+	<ul class="rating" id="rating">
+		<li class="rating-item" title="很不好"></li>
+		<li class="rating-item" title="不好"></li>
+		<li class="rating-item" title="一般"></li>
+		<li class="rating-item" title="好"></li>
+		<li class="rating-item" title="很好"></li>
+	</ul>
+
+	<ul class="rating" id="rating2">
+		<li class="rating-item" title="很不好"></li>
+		<li class="rating-item" title="不好"></li>
+		<li class="rating-item" title="一般"></li>
+		<li class="rating-item" title="好"></li>
+		<li class="rating-item" title="很好"></li>
+	</ul>
+	
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		/**
+		 * 问题：
+		 * 1.全局变量污染 => 匿名闭包立即执行函数(function(){...})();
+		 * 2.每一个星星都绑定了事件 => 事件委托(冒泡)
+		 * 3.代码复用性差 => jQuery封装插件
+		 */
+		var rating = (function() {
+
+			//点亮(如果放在init函数中调用了2次)
+			var lightOn = function($item, num) {
+				$item.each(function(index) {
+					if (index < num) {
+						$(this).css('background-position', '0 -40px');
+					} else {
+						$(this).css('background-position', '0 0');
+					}
+				});
+			};
+
+			var init = function(el, num) {
+				//一开始点亮
+				var $rating = $(el),
+					$item = $rating.find('.rating-item');
+
+				//初始化
+				lightOn($item, num);
+
+				//事件绑定(事件委托：on方法的第二个参数写委托的子元素)
+				$rating.on('mouseover', '.rating-item', function() {
+					lightOn($item, $(this).index() + 1);
+				}).on('click', '.rating-item', function() {
+					num = $(this).index() + 1;
+				}).on('mouseout', function() {
+					lightOn($item, num);
+				});
+			};
+
+			//jQuery插件
+			$.fn.extend({
+				rating: function(num) {
+					return this.each(function() {
+						init(this, num);
+					});
+				}
+			});
+
+			return {
+				init: init
+			};
+		})();
+
+		rating.init('#rating', 2);
+		//rating.init('#rating2', 3);
+		
+		$('#rating2').rating(3);
+	</script>
+</body>
+</html>

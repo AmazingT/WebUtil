@@ -1,0 +1,126 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery动态向上滚动-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	font-family:'microsoft yahei';
+	background:#fff;
+	overflow:hidden;
+}
+#demo1,#demo2 {
+	width:1000px;
+	height:40px;
+	line-height:30px;
+	margin:50px auto;
+	overflow:hidden;
+	background:#f60;
+	color:#fff;
+	padding:10px;
+	box-sizing:border-box;
+}
+#demo2 {
+	height:90px;
+}
+#demo2 a {
+	display:block;
+	text-decoration:none;
+	color:#fff;
+}
+#demo3 {
+	width:1000px;
+	height:400px;
+	overflow:hidden;
+	background:#f60;
+	color:#fff;
+	margin:50px auto;
+	padding:10px;
+	box-sizing:border-box;
+}
+</style>
+</head>
+<body>
+<!-- demo示例一 -->
+<div id="demo1">
+    <div class="demo">
+        <div class="con">
+            向幸福生活致敬！
+        </div>
+        <div class="con">
+            向幸福生活致敬！
+        </div>
+        <div class="con">
+            向幸福生活致敬！
+        </div>
+    </div>
+</div>
+<!-- demo示例二 -->
+<div id="demo2">
+    <a href="#">第一条新闻</a>
+    <a href="#">第二条新闻</a>
+    <a href="#">第三条动态</a>
+</div>
+<!-- demo示例三 -->
+<div id="demo3" style="overflow:hidden;height:200px;">
+
+    <div id="dl">
+    
+        <p>恭喜133****1062用户获得10元手机话费</p>
+    
+        <p>恭喜153****0792用户获得50元助学代金券</p>
+    
+        <p>恭喜153****3890用户获得330元上课大礼包</p>
+    
+        <p>恭喜189****0883用户获得330元上课大礼包</p>
+    
+        <p>恭喜133****6823用户获得1500元现金</p>
+    
+        <p>恭喜153****5050用户获得330元上课大礼包</p>
+        </div>
+    </div>
+
+<script>
+$(function() {
+    // demo示例一
+    setInterval('autoScroll("#demo1")', 1000);
+    // demo示例二
+    　　　　　　
+    $('#demo2 a:first').siblings().hide();　　　　　　
+    setInterval(function() {　　　　　　　　
+        $('#demo2 a:visible').slideUp('slow', function() {　　　　　　　　　　
+            $(this).next('a')[0] === undefined ? $('a:first').fadeIn("slow") : $(this).next('a').fadeIn("slow");　　　　　　　　
+        });　　　　　　
+    }, 1000 * 2)
+});
+// demo示例一函数
+function autoScroll(obj) {　　　　　　
+    $(obj).find(".demo:first").animate({　　　　　　　　
+        marginTop: "-20px"　　　　　　
+    }, 500, function() {　　　　　　　　
+        $(this).css({
+            marginTop: "0px"
+        }).find(".con:first").appendTo(this);　　　　　　
+    });　　　　
+};
+// demo示例三
+var drawLetters = document.getElementById("demo3");　　　　
+var dl = document.getElementById("dl");　　　　
+var speed = 20; //滚动速度值，值越大速度越慢
+　　　　
+function Marquee() {　　　　　　
+    drawLetters.scrollTop++;　　　　　　
+    var newNode = document.createElement("div");　　　　　　
+    newNode.innerHTML = dl.innerHTML;　　　　　　
+    drawLetters.insertBefore(newNode, null);　　　　
+}　　　　
+var MyMar = setInterval(Marquee, speed); //设置定时器
+</script>
+
+</body>
+</html>

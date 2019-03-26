@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge chrome=1">
+	<!-- #以上代码IE=edge告诉IE使用最新的引擎渲染网页，chrome=1则可以激活Chrome Frame. -->
+	<meta name="viewport" content="width=device-width initial-scale=1 minimum-scale=1 maximum-scale=1">
+	<title>放大镜特效</title>
+
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#demo{
+			width: 120px;
+			height: 120px;
+			margin: 50px;
+			position: relative;
+		}
+		.smallBox{		
+			position: relative;
+			z-index: 1;
+			width: 120px;
+			height: 120px;
+		}
+		/* .smallBox #mask{
+			width: 120px;
+			height: 120px;
+			position: absolute;
+			z-index: 2;
+			opacity: 0;
+			display: block;
+			background-color: #FFF;
+		} */
+		.smallBox .floatBox{
+			position: absolute;
+			z-index: 2;
+			width: 30px;
+			height: 30px;
+			/* opacity: 0; */
+			/* display: none; */
+			/* cursor: move; */
+			/* filter: alpha(opacity=0); */
+			background-color: rgba(255,255,255,.5);
+		}
+		.bigBox{
+			width: 300px;
+			height: 300px;
+			top: 0;
+			left: 140px;
+			display: none;
+			position: absolute;
+			z-index: 4;
+			overflow: hidden;
+			border: 1px solid #e5e5e5;
+		}
+		.bigBox img{
+			position: absolute;
+			z-index: 5;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload=function(){
+			var smallBox=document.getElementById('smallBox');
+			var demo=document.getElementById('demo');
+			var	floatBox=document.getElementById('floatBox');
+			var	bigBox=document.getElementById('bigBox');
+			//var	mask=document.getElementById('mask');
+			var bigBoxImg=bigBox.getElementsByTagName('img')[0];
+
+			smallBox.onmouseover=function(){
+				floatBox.style.display='block';
+				bigBox.style.display='block';
+			}
+			smallBox.onmouseout=function(){
+				floatBox.style.display='none';
+				bigBox.style.display='none';
+			}
+
+			smallBox.onmousemove=function(e){
+				var _event=e||window.event;
+				var left=_event.clientX-demo.offsetLeft-smallBox.offsetLeft-floatBox.offsetWidth/2,
+					top=_event.clientY-demo.offsetTop-smallBox.offsetTop-floatBox.offsetHeight/2;
+
+				var maxX=smallBox.offsetWidth-floatBox.offsetWidth,
+					maxY=smallBox.offsetHeight-floatBox.offsetHeight;
+
+				if(left<0){
+					left=0;
+				}else if(left>maxX){
+					left=maxX;
+				}
+
+				if(top<0){
+					top=0;
+				}else if(top>maxY){
+					top=maxY;
+				}
+
+				floatBox.style.left=left+'px';
+				floatBox.style.top=top+'px';
+
+				var percentX=left/maxX,
+					percentY=top/maxY;
+
+				//bigBoxImg.style.left=-percentX*(bigBoxImg.offsetWidth-bigBox.offsetWidth)+'px';
+				//bigBoxImg.style.top=-percentY*(bigBoxImg.offsetHeight-bigBox.offsetHeight)+'px';
+
+				bigBoxImg.style.left=-percentX*(bigBoxImg.offsetWidth-bigBox.offsetWidth)+'px';
+				bigBoxImg.style.top=-percentY*(bigBoxImg.offsetHeight-bigBox.offsetHeight)+'px';
+			}
+			
+		}
+</script>
+</head>
+<body>
+	<div id="demo">
+		<div class="smallBox" id="smallBox">
+			<!-- <div id="mask"></div> --><!--兼容IE浏览器-->
+			<div class="floatBox" id="floatBox"></div>
+			<img src="images/min.jpg" alt="">
+		</div>
+
+		<div class="bigBox" id="bigBox">
+			<img src="images/max.jpg" alt="">
+		</div>
+	</div>
+</body>
+</html>

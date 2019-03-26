@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网页定位效果</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			font-family: '微软雅黑';
+			font-size: 14px;
+			line-height: 1.6;
+		}
+		li{
+			list-style: none;
+		}
+		#content{
+			width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		#content #loading{
+			text-align: center;
+		}
+		#content h1{
+			color: #0088bb;
+		}
+		#content .item{
+			padding: 20px;
+			margin-bottom: 20px;
+			border: 1px dotted #0088bb;
+		}
+		#content .item h2{
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 10px;
+			border-bottom: 2px solid #0088bb;
+		}
+		#content .item li{
+			display: inline;
+			margin-right: 10px;
+		}
+		#content .item li a img{
+			width: 230px;
+			height: 230px;
+			border: none;
+		}
+		#menu{
+			position: fixed;
+			top: 100px;
+			left: 50%;
+			margin-left: 400px;/*技巧left:50%和margin-left结合*/
+			width: 80px;
+		}
+		#menu ul li a{
+			display: block;
+			margin: 5px 0;
+			font-size: 14px;
+			font-weight: bold;
+			color: #333;
+			width: 80px;
+			height: 50px;
+			line-height: 50px;
+			text-decoration: none;
+			text-align: center;
+		}
+		#menu ul li a:hover,
+		#menu ul li a.current{
+			color: #FFF;
+			background: #0088bb;
+		}
+	</style>
+	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+	<!--<script src="../JS/jquery-3.1.0.min.js"></script>-->
+	<script>
+		$(document).ready(function(){
+			$(window).scroll(function(){
+				var menu=$("#menu");
+				var top=$(window).scrollTop();
+				var height=$(window).height();
+				var items=$('#content').find('.item');
+				var topHeight=$(window).height()+$(window).scrollTop();
+				var stop=true;
+
+				var currentId="";
+				items.each(function(){//each是一个函数
+					var m=$(this);
+					var itemsTop=m.offset().top;
+
+					if(top>itemsTop-250){
+						currentId="#"+m.attr("id");
+					}else{
+						return false;
+					}
+				});
+				var currentLink=menu.find(".current");
+				if(currentId && currentLink.attr(".current")!=currentId){
+					currentLink.removeClass("current");
+					menu.find("[href="+currentId+"]").addClass("current");
+				}
+				//加载更多...
+				if(height<=topHeight){
+					if(stop){
+						stop=false;
+						$.post("ajax.php",{start:1,n:50},function(txt){
+							$("#loading").before(txt);
+							stop=true;
+						},"text")
+					}
+				}
+			});
+		});
+	
+	/*
+	window.onload=function(){
+		window.onscroll=function(){
+			var top=document.documentElement.scrollTop || document.body.scrollTop;
+			var content=document.getElementById("content");
+			var list=document.getElementById("menu").getElementsByTagName("a");
+			var items=getByClass(content,'item');
+			var currentId="";
+
+			for(var j=0;j<items.length;j++){
+				var _items=items[j];
+				if(top>_items.offsetTop-200){
+					currentId=_items.id;
+				}else{
+					break;
+				}
+			}
+
+			if(currentId){
+				for(var k=0;k<list.length;k++){
+					var currentList=list[k];
+					if(currentList.className=='current'){
+						var _list=currentList.href.split("#");
+						var currentLink=_list[_list.length-1];
+						if(currentLink!=currentId){
+							removeClass(currentList,"current");
+						}else{
+							addClass(currentList,"current");
+						}
+					}
+				}	
+			}
+			
+		}
+		
+	}
+
+	function getByClass(oParent,cls){
+		var arrItem=new Array();
+		var allItem=document.getElementsByTagName("*");
+		for(var i=0;i<allItem.length;i++){
+			if(allItem[i].className==cls){
+				arrItem.push(allItem[i]);
+			}
+		}
+		return arrItem;
+	}
+
+	function hasClass(obj,cls){
+		return obj.className.match(new RegExp("(\\s|^)"+cls+"(\\s|$)"));
+	}
+
+	function removeClass(obj,cls){
+		if(hasClass(obj,cls)){
+			var reg=new RegExp("(\\s|^)"+cls+"(\\s|$)");
+			obj.className=obj.className.replace(reg,"");
+		}
+	}
+
+	function addClass(obj,cls){
+		if(!hasClass(obj,cls)){
+			obj.className += ""+cls;
+		}
+	}
+	*/
+	</script>
+</head>
+<body>
+	<div id="menu">
+		<ul>
+			<!--H5使用id来表示锚点-->
+			<li><a href="#item1" class="current">1F 男装</a></li>
+			<li><a href="#item2">2F 女装</a></li>
+			<li><a href="#item3">3F 美妆</a></li>
+			<li><a href="#item4">4F 数码</a></li>
+			<li><a href="#item5">5F 母婴</a></li>
+		</ul>
+	</div>
+	<div id="content">
+		<h1>地狗购物</h1>
+		<div id="item1" class="item">
+			<h2>1F 男装</h2>
+			<ul>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1F.jpg" alt=""></a></li>
+			</ul>
+		</div>
+
+		<div id="item2" class="item">
+			<h2>2F 女装</h2>
+			<ul>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2F.jpg" alt=""></a></li>
+			</ul>
+		</div>
+
+		<div id="item3" class="item">
+			<h2>3F 美妆</h2>
+			<ul>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3F.jpg" alt=""></a></li>
+			</ul>
+		</div>
+
+		<div id="item4" class="item">
+			<h2>4F 数码</h2>
+			<ul>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+				<li><a href="#"><img src="images/4F.png" alt=""></a></li>
+			</ul>
+		</div>
+
+		<div id="item5" class="item">
+			<h2>5F 母婴</h2>
+			<ul>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5F.jpg" alt=""></a></li>
+			</ul>
+		</div>
+		<div id="loading">
+			<a href="javascript:void(0)" title="加载更多...">加载更多...</a>
+		</div>
+	</div>
+	
+</body>
+</html>

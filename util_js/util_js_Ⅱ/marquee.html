@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>原生无缝滚动（封装）</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+* {
+	margin:0;
+	padding:0;
+}
+ul {
+	list-style:none;
+}
+body {
+	padding:50px;
+}
+.mar {
+	width:350px;
+	height:250px;
+	border:1px solid #f80;
+	overflow:hidden;
+}
+.mar li {
+	height:35px;
+	line-height:35px;
+	border-bottom:1px dashed #bbb;
+	padding-left:10px;
+}
+.mar li:hover {
+	background-color:#f80;
+	color:#fff;
+}
+</style>
+</head>
+<body>
+
+    <div id="mar" class="mar">
+
+        <ul class="quee1">
+            <li>我是可爱的一行1行</li>
+            <li>我是可爱的一行2行</li>
+            <li>我是可爱的一行3行</li>
+            <li>我是可爱的一行4行</li>
+            <li>我是可爱的一行5行</li>
+            <li>我是可爱的一行6行</li>
+            <li>我是可爱的一行7行</li>
+            <li>我是可爱的一行8行</li>
+        </ul>
+
+    </div>
+
+
+<script>
+window.onload = init;
+
+function init() {
+    new Marquee({
+        name: "mar",
+        speed: 20,
+        offset: 2
+    });
+}
+
+function Marquee(opt) {
+    var dom = document.getElementById(opt.name);
+    var speed = opt.speed || 50;
+    var offset = opt.offset || 1;
+    var interId;
+    var ul1 = dom.getElementsByTagName("ul")[0];
+    var ul2;
+    init();
+    animate();
+
+    function animate() {
+        interId = setInterval(function() {
+            dom.scrollTop += offset;
+            if (dom.scrollTop >= ul1.scrollHeight) {
+                dom.scrollTop = 0;
+            }
+        }, speed)
+    }
+    dom.onmouseover = function() {
+        clearInterval(interId);
+    }
+    dom.onmouseout = function() {
+        animate();
+    }
+
+    function init() {
+        ul2 = document.createElement("ul");
+        ul2.innerHTML = ul1.innerHTML;
+        dom.appendChild(ul2);
+    }
+}
+</script>
+
+</body>
+</html>

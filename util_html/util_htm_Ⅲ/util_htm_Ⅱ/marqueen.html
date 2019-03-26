@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文字横向滚动</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .text-wrap {
+            width: 80%;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            background-color: #f5f5f5;
+        }
+
+        .text-wrap .text-content {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-wrap">
+        <div class="text-content">酒店温馨提示：周五、周六节假日房价有一定的上调，请以官网价格为准！</div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            (function() {
+                var sWidth = $(".text-wrap").width();
+                var tWidth = $(".text-wrap").find('.text-content').width();
+                var i = sWidth;
+
+                setInterval(function() {
+                    i--;
+                    if (i < -tWidth) {
+                        i = sWidth;
+                    }
+                    $(".text-wrap").find('.text-content').css('left', i + 'px')
+                }, 20)
+            })();
+        });
+    </script>
+</body>
+</html>

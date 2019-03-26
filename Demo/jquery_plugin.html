@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery插件开发</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="example">
+        <img src="images/1.jpg" alt="">
+    </div>
+    <div class="example">
+        <img src="images/2.jpg" alt="">
+    </div>
+    <div class="example">
+        <img src="images/3.jpg" alt="">
+    </div>
+    <div class="example">
+        <img src="images/4.jpg" alt="">
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jq_plugin.js"></script>
+    <script>
+        (function() {
+            $(".example img").preload({
+                width: '120',
+                height: '120'
+            });
+        })();
+    </script>
+</body>
+</html>

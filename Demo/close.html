@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>关闭标签</title>
+	<link rel="stylesheet" href="css/rem.css">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<style>
+		body {
+			background-color: rgba(0,0,0,.7);
+		}
+
+		.close {
+			width: .34rem;
+			height: .34rem;
+			position: relative;
+			border: 1px solid #fff;
+			border-radius: 50%;
+		}
+
+		.close:before,
+		.close:after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: .02rem;
+			height: .24rem;
+			margin-top: -.12rem;
+			margin-left: -.01rem;
+			border-radius: .04rem;
+			background-color: #fff;
+		}
+
+		.close:before{
+			transform: rotate(45deg);
+			-webkit-transform: rotate(45deg)
+		}
+
+		.close:after{
+			transform: rotate(-45deg);
+			-webkit-transform: rotate(-45deg)
+		}
+	</style>
+</head>
+<body>
+	<div class="close"></div>
+</body>
+</html>

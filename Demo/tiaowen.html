@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css实现各种效果</title>
+    <style>
+        div {
+            margin-bottom: 20px;
+        }
+
+        .box {
+            width: 400px;
+            height: 200px;
+            background-image: -webkit-linear-gradient(red 50%, green 50%);
+            background-size: 100% 20px;
+        }
+
+        .box1 {
+            width: 400px;
+            height: 200px;
+            background-image: -webkit-linear-gradient(left, red 50%, green 50%);
+            background-size: 20px 100%;
+        }
+
+        .box2 {
+            width: 400px;
+            height: 200px;/*red 25%,green 0,green 50%,red 0,red 75%,green 0*/
+            background-image: -webkit-linear-gradient(45deg,red 25%, green 0, green 50%, red 0, red 75%, green 0);
+            background-size: 40px 40px;
+        }
+
+        .wrap {
+            width: 1000px;
+            height: 600px;
+            position: relative;
+            background: url(images/bg.jpg) no-repeat;
+            background-size: cover;
+        }
+
+        /* 毛玻璃实现方法：利用伪类置于元素背后，模糊处理后添加通背景同样的图片 */
+        .content {
+            width: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 20px 40px;
+            overflow: hidden;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: -30px;
+            filter: blur(10px);
+            -webkit-filter: blur(10px);
+            background: url(images/bg.jpg) 0 / cover fixed;
+            /* background-position: 0 center;
+            background-size: cover;
+            background-attachment: fixed; */
+        }
+
+        /* 图片滤镜效果 */
+        .pic img {
+            /* filter: blur(2px); 高斯模糊，值越大越模糊 */
+            /* filter: brightness(50%); 设置图片亮度 */
+            /* filter: contrast(50%); 设置图片对比度 */
+            /* filter: drop-shadow(10px 10px 10px rgba(0,0,0,.5)); 图片阴影 */
+            /* filter: grayscale(100%); 设置图片灰度 */
+            /* filter: saturate(50%); 设置饱和度 */
+            filter: sepia(50%); /* 设置图片褐色 */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div>斑马条纹效果</div>
+    <div class="box"></div>
+    <div class="box1"></div>
+    <div class="box2"></div>
+
+    <div>毛玻璃效果</div>
+    <div class="wrap">
+        <div class="content">
+            <h2>WARFRAME</h2>
+            <div>The Grineer, with their endless clone armies, have plunged the system into chaos. There is only one force that can match them, you. You are Tenno, an ancient warrior, a master of gun and blade. You wield the mighty Warframes and command their awesome powers. Forge your weapons. Gather like-minded Tenno and take the fight back to the Grineer. The Origin System needs you once again. Are you ready?</div>
+        </div>
+    </div>
+
+    <div>图片滤镜效果</div>
+    <div class="pic">
+        <img src="images/pic.jpg" alt="">
+    </div>
+</body>
+</html>

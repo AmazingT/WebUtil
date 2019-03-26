@@ -1,0 +1,104 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>刮刮乐的实现-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+* {
+	margin:0;
+}
+#card {
+	width:320px;
+	height:568px;
+	margin:0 auto;
+	background:url(img/g.jpg) no-repeat;
+	background-size:320px 568px;
+	position:relative;
+}
+#myCanvas {
+	/*border:2px solid green;
+	*/
+	position:absolute;
+	left:28px;
+	top:30px;
+}
+#p1 {
+	position:absolute;
+	left:28px;
+	top:30px;
+	height:131px;
+	width:260px;
+	font-size:40px;
+	text-align:center;
+	line-height:131px;
+	color:orange;
+}
+</style>
+</head>
+<body>
+<div id="card">
+    <p id="p1">特等奖</p>
+    <canvas id="myCanvas" width="265" height="135"></canvas>
+</div>
+
+<script>
+function randomNum(m, n) {
+    return Math.floor(Math.random() * (n - m + 1) + m);
+
+}
+var arr = ["特等奖", "一等奖", "二等奖", "二等奖", "谢谢惠顾",
+    "谢谢惠顾", "谢谢惠顾", "谢谢惠顾", "谢谢惠顾", "谢谢惠顾", "谢谢惠顾", "谢谢惠顾", "谢谢惠顾", "谢谢惠顾"
+];
+//随机下标
+var index = randomNum(0, arr.length - 1);
+var p1 = document.getElementById("p1");
+//显示奖项
+p1.innerHTML = arr[index];
+var canvas = document.getElementById("myCanvas");
+var cardDiv = document.getElementById("myCanvas");
+var context = canvas.getContext('2d');
+//涂色 (刮刮乐)
+context.fillStyle = "darkgray";
+context.fillRect(0, 0, canvas.width, canvas.height);
+//添加鼠标按下事件
+canvas.onmousedown = function() {
+    //鼠标移动事件
+    canvas.onmousemove = function(e) {
+        //事件对象
+        var event1 = e || window.event;
+        //获取鼠标的位置
+        var x = event1.offsetX;
+        var y = event1.offsetY;
+        //设置图形组合方式 保留不重合部分
+        context.globalCompositeOperation = "destination-out"
+
+        //画圆
+        context.beginPath();
+        context.arc(x, y, 20, 0, Math.PI * 2, true);
+        context.fill();
+        //如果刮过部分超过80%,则全部刮掉
+        var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        var colors = imageData.data; //获取图形像素点数组
+        var count = 0; //存储透明区向像素点的个数
+        for (var i = 0; i < colors.length; i += 4) {
+            //获取透明度的值 colors[i + 3]
+            if (colors[i + 3] == 0) {
+                count++;
+            }
+        }
+        if (count > colors.length / 4 * 0.8) {
+            //清空整个画布内容
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+    }
+}
+//添加鼠标松开事件
+canvas.onmouseup = function() {
+    canvas.onmousemove = null;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width initial-scale=1,user-scalable=no">
+	<title>雅楠</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<style type="text/css">
+		body{
+			font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif; 
+			overflow: hidden;
+			line-height: 1.6em;
+		}
+		.navbar-default{
+			top: 0;
+			left: 0;
+			height: 50px;
+			z-index: 1000;
+			position: fixed;
+			background: rgba(0,0,0,0);
+			border-bottom: none;
+		}
+		#home .carousel .carousel-inner img{
+		    height: auto;
+		}
+		.navbar-default .navbar-center li{
+			padding: 0 10px;
+		}
+		.navbar .navbar-right{
+			padding-right: 25px;
+		}
+		.navbar .navbar-right li a{
+			color: #00c2ff;
+			font-size: 14px;
+		}
+		.navbar-default .navbar-toggle{
+			border: none;
+		}
+		.navbar-default .navbar-toggle .icon-bar {
+			background-color: #FFF;
+		}
+		.navbar .navbar-right li a:hover{
+			color: #00c2ff;
+			font-weight: bolder;
+		}
+		.navbar-default .collapse a{
+			line-height: 20px;
+			font-size: 14px;
+		}
+		.glyphicon-earphone{
+			font-size:14px;
+			margin-right:10px;
+			margin-left: 10px;
+		}
+		.carousel-indicators {
+    		top: 68%;
+		}
+		.carousel-caption {
+			top: 40%;
+		}
+		.carousel-caption h1{	
+			color: #00c2ff;	
+			font-size: 45px;
+			font-weight: bold;
+			font-style: italic;
+			font-family: lingxin,'Microsoft YaHei','YaHei WebFont',Verdana,Geneva,Tahoma,sans-serif,'宋体';
+		}
+		.carousel-caption h3{
+			font-size: 16px;
+			font-style: italic;
+			font-family: lingxin,'Microsoft YaHei','YaHei WebFont',Verdana,Geneva,Tahoma,sans-serif,'宋体';
+		}
+		#home .carousel .carousel-indicators li.active {
+			background-color: #00c2ff;
+		}
+		.container-fluid{
+			padding: 0;
+		}
+		.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav li a:hover {
+			color: #00c2ff;
+    		padding: 0 15px;
+    		margin-top: 15px;
+    		border-radius: 5px;
+			background: rgba(255,255,255,0.05);
+		}
+		.navbar-default .navbar-nav>li>a{
+			color: #FFF;
+		}
+		.navbar-default .navbar-brand{
+			color: #FFF;
+			line-height: 20px;
+			font-size: 14px;
+			padding-left: 25px;
+			font-weight: bold;
+		}
+		.navbar-default .navbar-toggle:hover {
+		    background-color: rgba(255,255,255,.2);
+		}
+		.content #myCarousel{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#abouts{
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			position: fixed;
+			background: url('img/p6.jpg') no-repeat center;
+			background-size: cover;
+		}
+		#abouts .inner-content{
+			padding-top: 100px;
+		}
+		#abouts .nav-tabs{
+			border: none;
+			margin-bottom:40px;
+		}
+		#abouts .tab-content .tab-pane{
+			color: #FFF;
+			line-height: 2.0;
+			text-align: left;
+		}
+		#abouts .nav.nav-tabs li.active a {
+		    background-color: rgba(0,194,255,.7);
+		    color: #fff;
+		}
+		#abouts .nav.nav-tabs li a {
+			color: #bbb;
+		    border: none;
+		    border-radius: 0;
+		    text-decoration: none;
+		    position: relative;
+		    background-color: rgba(0,194,255,.5);
+		 }
+		 #abouts .nav.nav-tabs li a:hover{
+		 	background-color: rgba(0,194,255,.5);
+		 }
+		 #abouts .nav.nav-tabs li.active a::after {
+		    display: block;
+		    content: '';
+		    position: absolute;
+		    border-style: solid;
+		    border-width: 8px;
+		    border-color: rgba(0,194,255,.7) transparent transparent;
+		    width: 0;
+		    height: 0;
+		    left: 50%;
+		    bottom: -16px;
+		    margin-left: -8px;
+		}
+		.fade{
+			opacity: 1;
+			transition: all 0s linear;
+		}
+		#abouts .fade in{
+			opacity: 0;
+			transition: opacity 0.15s linear;
+		}
+		#ours{
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			position: fixed;
+			background: url('img/p8.jpg') no-repeat center;
+			background-size: cover;
+		}
+		#contact{
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			position: fixed;
+			background: url('img/p7.jpg') no-repeat center;
+			background-size: cover;
+		}
+
+		.ours{
+			margin-top: 80px;
+		}
+		.ours .title{
+			color: #00c2ff;
+			font-style: italic;
+			text-align: center;
+		}
+		.ours .title p{
+			color: #FFF;
+		}
+		.ours .thumbnail{
+			width: 220px;
+			height: 210px;
+			margin: 10px auto;
+		}
+		.ours img{
+			width: 220px;
+			height: 200px;
+			margin: 0 auto;
+			display: block;
+			cursor: pointer;
+		}
+		.ours .col{
+			margin: 10px 0;
+		}
+		.contact_our{
+			margin-top: 80px;
+			margin-left: 20px;
+		}
+		.popover-title{
+			color: #00c2ff;
+			font-size: 18px;
+			font-family: '微软雅黑';
+		}
+		.popover-content{
+			font-size: 14px;
+			font-family: '微软雅黑';
+		}
+		#contact .col-left{
+			color: #FFF;
+			border: 1px solid #e7e7e7;
+			border-radius: 4px;
+			box-shadow: 2px 2px 2px #333;
+		}
+		#contact .col-right{
+			border: 1px solid #e7e7e7;
+			border-radius: 4px;
+			padding-left: 15px;
+			box-shadow: 2px 2px 2px #333;
+		}
+		#contact .title{
+			text-align: center;
+			margin-bottom: 80px;
+		}
+		#contact .title h1{
+			font-size: 50px;
+			color: #FFF;
+			font-style: italic;
+			font-family: 'Microsoft YaHei';
+		}
+		#contact .title span{
+			color: #00c2ff;
+		}
+		#contact .one{
+			margin: 10px 0;
+			padding-left: 26px;
+			background-color: #FFF;
+		}
+		#contact .btn{
+			float: right;
+		}
+		#contact .name{			
+			background: url('img/name.png') no-repeat 4px center;	
+			background-color: #FFF;
+		}
+		#contact .tell{
+			background: url('img/tell.png') no-repeat 4px center;
+			background-color: #FFF;
+		}
+		#contact .email{
+			background: url('img/email.png') no-repeat 4px center;
+			background-color: #FFF;
+		}
+		@media (min-width: 768px) { 
+			.navbar-default {height:50px;}
+			.navbar-default .navbar-brand {line-height:25px;font-size:16px;margin-left:0;}
+			.navbar .navbar-right li a{font-size:16px;}
+			.navbar-default .collapse a{line-height: 30px;font-size: 16px;}
+			#abouts .inner-content{padding-top: 200px;}
+			.glyphicon-earphone{font-size:18px;}
+		}
+
+		@media (min-width: 992px) { 
+			.navbar-default {height:60px;}
+			.navbar-default .navbar-brand {line-height:35px;font-size:18px;}
+			.navbar .navbar-right li a{font-size:20px;}
+			.navbar-default .collapse a{line-height: 40px;font-size: 18px;}
+			#abouts .inner-content{padding-top: 200px;}
+			.glyphicon-earphone{font-size:20px;}
+		}
+
+		@media (min-width: 1200px) { 
+			.navbar-default {height:80px;}
+			.navbar-default .navbar-brand {line-height:50px;font-size:20px;}
+			.navbar .navbar-right li a{font-size:25px;}
+			.navbar-default .collapse a{line-height: 50px;font-size: 20px;}
+			#abouts .inner-content{padding-top: 200px;}
+			.glyphicon-earphone{font-size:22px;}
+		}
+	</style>
+</head>
+<body>
+<!-- 顶部 -->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand">雅楠</a>
+			<!-- 缩小隐藏按钮 -->
+			<button class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" type="button">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<!-- 响应式(加上折叠collapse) -->
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-center">
+				<li class="active"><a href="#home" data-toggle="tab">首页</a></li>
+				<li><a href="#abouts" data-toggle="tab">关于</a></li>
+				<li><a href="#ours" data-toggle="tab">我们</a></li>
+				<li><a href="#contact" data-toggle="tab">联系</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right" style="">
+				<li>
+					<a href="tel:184-3516-5484" title="咨询热线" style="color:#00c2ff">
+						<span class="glyphicon glyphicon-earphone"></span>184-3516-5484</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="content">
+	<div class="container-fluid">
+		<div class="tab-content">
+		<!-- fade淡入淡出效果,in默认显示 -->
+			<div class="tab-pane active fade in" id="home">
+			<!--图片轮播-->
+				<div id="myCarousel" class="carousel slide">
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+							<li data-target="#myCarousel" data-slide-to="3"></li>
+							<li data-target="#myCarousel" data-slide-to="4"></li>							
+						</ol>
+
+						<div class="carousel-inner">
+							<div class="item active">
+								<img src="img/p5.jpg" alt="3">
+								<div class="carousel-caption">
+									<h1>勤奋</h1>
+									<h3>业精于勤，荒于嬉；行成于思，毁于随</h3>
+								</div>
+							</div>
+							<div class="item">
+								<img src="img/p1.jpg" alt="1">
+								<div class="carousel-caption">
+									<h1>团结</h1>
+									<h3>能用众力，则无敌于天下矣；能用众智，则无畏于圣人矣。</h3>
+								</div>
+							</div>
+							<div class="item">
+								<img src="img/p2.jpg" alt="2">
+								<div class="carousel-caption">
+									<h1>好学</h1>
+									<h3>理无专在,而学无止境也,然则问可少耶?</h3>
+								</div>
+							</div>
+							<div class="item">
+								<img src="img/p3.jpg"  alt="3">
+								<div class="carousel-caption">
+									<h1>坚持</h1>
+									<h3>能用众力，则无敌于天下矣；能用众智，则无畏于圣人矣。</h3>
+								</div>
+							</div>
+							<div class="item">
+								<img src="img/p4.jpg"  alt="3">
+								<div class="carousel-caption">
+									<h1>执著</h1>
+									<h3>图片三简介</h3>
+								</div>
+							</div>
+						</div>
+
+						<a href="#myCarousel" class="carousel-control left" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+						<a href="#myCarousel" class="carousel-control right" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
+				</div>
+
+			</div>
+
+			<div class="tab-pane fade" id="abouts">
+			<!--关于-->
+				<div class="container">
+					<div class="inner-content">						
+					<div class="row">
+						<div class="col-md-6 col-md-offset-1 col-sm-offset-2 col-xs-offset-0 col-sm-8 col-xs-12">
+							<ul id="nav" class="nav nav-tabs">
+								<li class="active"><a href="#html5" data-toggle="tab">简介</a></li>
+								<li><a href="#bootstrap" data-toggle="tab">实力</a></li>
+								<li><a href="#jquery" data-toggle="tab">文化</a></li>
+								<li><a href="#extjs" data-toggle="tab">气氛</a></li>
+							</ul>
+
+							<div class="tab-content" style="padding:0px;">
+								<div class="tab-pane active fade in" id="html5">标准通用标记语言下的一个应用HTML标准自1999年12月发布的HTML4.01后，后继的HTML5和其它标准被束之高阁，为了推动Web标准化运动的发展，一些公司联合起来，成立了一个叫做 Web Hypertext Application Technology Working Group （Web超文本应用技术工作组 -WHATWG） 的组织。WHATWG 致力于 Web 表单和应用程序，而W3C（World Wide Web Consortium，万维网联盟） 专注于XHTML2.0。在 2006 年，双方决定进行合作，来创建一个新版本的 HTML。
+								</div>
+								<div class="tab-pane fade" id="bootstrap">Bootstrap，来自 Twitter，是目前很受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。[1]  它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。Bootstrap提供了优雅的HTML和CSS规范，它即是由动态CSS语言Less写成。Bootstrap一经推出后颇受欢迎，一直是GitHub上的热门开源项目，包括NASA的MSNBC（微软全国广播公司）的Breaking News都使用了该项目。[2]国内一些移动开发者较为熟悉的框架，如WeX5前端开源框架等，也是基于Bootstrap源码进行性能优化而来。
+								</div>
+								<div class="tab-pane fade" id="jquery">JQuery是继prototype之后又一个优秀的Javascript库。它是轻量级的js库 ，它兼容CSS3，还兼容各种浏览器（IE 6.0+, FF 1.5+, Safari 2.0+, Opera 9.0+），jQuery2.0及后续版本将不再支持IE6/7/8浏览器。jQuery使用户能更方便地处理HTML（标准通用标记语言下的一个应用）、events、实现动画效果，并且方便地为网站提供AJAX交互。jQuery还有一个比较大的优势是，它的文档说明很全，而且各种应用也说得很详细，同时还有许多成熟的插件可供选择。jQuery能够使用户的html页面保持代码和html内容分离，也就是说，不用再在html里面插入一堆js来调用命令了，只需要定义id即可。
+								</div>
+								<div class="tab-pane fade" id="extjs">YUI 库，全称Yahoo! UI Library。是一组工具和控件，用JavaScript写成, 为的是用DOM 脚本，DHTML和AJAX等技术创建丰富的网页交互式应用程序。YUI 基于BSD协议，对所有的使用方式都是免费的。YUI 项目包括YUI 库和两个创建时工具： YUI Compressor (压缩) 和 YUI Doc （JavaScripts代码的文档引擎）。
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>					
+			</div>
+		
+
+			<div class="tab-pane fade" id="ours">
+			<!--我们-->
+				<div class="ours">
+					<div class="container">
+						<div class="title">
+							<h1>放飞梦想</h1>
+							<p>我们是一群热爱IT的好青年 期待您的加入...</p>
+						</div>
+						<div class="row">
+							<div class="col col-lg-4 col-md-5 col-sm-8 col-xs-12">	
+									<img src="img/m1.jpg" class="img-circle person-1" alt="">	
+							</div>	
+							<div class="col col-lg-4 col-md-5 col-sm-8 col-xs-12">								<img src="img/m2.jpg" class="img-circle person-2" alt="">
+							</div>
+							<div class="col col-lg-4 col-md-5 col-sm-8 col-xs-12">								<img src="img/m3.jpg" class="img-circle person-3" alt="">
+							</div>
+							<div class="col col-lg-4 col-md-5 col-sm-8 col-xs-12">								<img src="img/m4.jpg" class="img-circle person-4" alt="">
+							</div>
+							<div class="col col-lg-4 col-md-5 col-sm-8 col-xs-12">								<img src="img/m5.jpg" class="img-circle person-5" alt="">
+							</div>
+							<div class="col col-lg-4 col-md-5 col-sm-8 col-xs-12">								<img src="img/m6.jpg" class="img-circle person-6" alt="">
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="tab-pane fade" id="contact">
+			<!--联系-->
+				<div class="contact_our">
+					<div class="container">
+						<div class="title">
+							<h1>欢迎<span>加入我们</span></h1>
+						</div>
+						<div class="row">
+							<div class="col-left col-md-3">
+								<p><span class="glyphicon glyphicon-map-marker"></span> 中北UFO技术部 五道门 中北大学</p>
+								<p><span class="glyphicon glyphicon-phone-alt"></span> 184-3516-5484</p>
+								<p><span class=" glyphicon glyphicon-envelope"></span> 41431270@QQ.com</p>
+								<p><span class="glyphicon glyphicon-hand-right"></span> QQ: 41431270</p>
+							</div>
+							<div class="col-right col-md-4 col-md-offset-1">
+								<form>
+									<div class="form-group">											
+										<input class="form-control name one" type="text" name="" placeholder="您的姓名" required>
+										<input class="form-control tell one" type="tell" name="" placeholder="您的手机号" required>
+										<input class="form-control email one" type="email" name="" placeholder="您的邮箱" required>																	
+										<textarea class="form-control one" rows="5" cols="5" name="" placeholder="简要描述您的信息..."></textarea>
+										<input class="btn btn-primary" type="submit" value="提 交">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+
+</div>
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+		$('#myCarousel').carousel({
+		interval:3000,
+		});
+		$('#ours .person-1').popover({
+			container:'body',
+			title:"张浩鑫",
+			trigger:'hover',
+		    content:"ufo技术部组织者。ufo成员之一。喜好电商，善于长跑，喜欢写作。性情随和，青睐军事，崇尚自由。对当下电商有自己独到的见解。曾总结出“一个多服务多个一”的电商理念。致力于电子商务行业，为成为一名合格电商人而不懈努力中……",
+		    placement:"right",
+		});
+		$('#ours .person-2').popover({
+			container:'body',
+			title:"马欣红",
+			trigger:'hover',
+		    content:"一个渴望跻身于程序员行列的女汉子 爱好睡觉吃饭写代码 伪文青 时刻为共产主义建设而奋斗着，YaNan网路工作室核心成员之一。",
+		    placement:"right"
+		});
+		$('#ours .person-3').popover({
+			container:'body',
+			title:"罗毅麟",
+			trigger:'hover',
+		    content:"微电子专业学生，UFO成员，Yanan网络工作室成员之一。时间过得飞快，自己也由蒙蒙的学弟成为学长了，成长路上我们疯狂过，贪玩过，奋斗过，只为不同的青春，活出不一样的自我。个人追求：我有自己“活法”，无需套用.信念： 一张嘴，十个手指头？少说话，多做事",
+		    placement:"right"
+		});
+		$('#ours .person-4').popover({
+			container:'body',
+			title:"任铭铭",
+			trigger:'hover',
+		    content:"软件学院学生，ufo技术部成员。ufo成员之一。开朗幽默，热爱健身，特长篮球，技术上，勤于专研，工作上，乐于付出，生活中，嘻哈顽皮，谈笑风生。正如照片中的他一样，脚踏实地，仰望星空，为人生中的另一半而细细寻觅，为即将到来的未来而默默奋斗着……",
+		    placement:"right"
+		});
+		$('#ours .person-5').popover({
+			container:'body',
+			title:"周波",
+			trigger:'hover',
+		    content:"理工大学计算机学院学生，拥有一些的前端经验，能应付大多数j2ee应用，YaNan网路工作室核心成员之一，能独立完成前端页面设计。",
+		    placement:"right"
+		});
+		$('#ours .person-6').popover({
+			container:'body',
+			title:"田井安",
+			trigger:'hover',
+		    content:"ufo技术部主力成员，性格沉稳，为人低调，乐观向上，好交友，有志青年。精于技术，求知心切，孜孜不倦，虽为在读大学生却多次被校外互联网公司相中，但仍感有所欠缺，终以婉拒。目前，正用自己的技术编绘着属于自己的美好蓝图……",
+		    placement:"right"
+		});
+	</script>
+</body>
+</html>

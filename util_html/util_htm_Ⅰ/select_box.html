@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<title>原生select下拉框美化</title>
+
+<link rel="stylesheet" type="text/css" href="css/selectFilter.css" />
+
+</head>
+<body>
+
+<div class="select-wrapper">
+	<div class="select-box">
+		<input class="select-input" type="text" readonly placeholder="请选择" />
+		<i class="icon icon-select-arrow"></i>
+	</div>
+	<select name="">
+		<option value="1">111</option>
+		<option value="2">222</option>
+		<option value="3">333</option>
+		<option value="4">444</option>
+		<option value="5">555</option>
+		<option value="6">666</option>
+	</select>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/selectFilter.js"></script>
+<script type="text/javascript">
+	$('.select-wrapper').selectFilter({
+		callBack : function (val){
+			//返回选择的值
+			console.log(val+'-是返回的值')
+		}
+	});
+</script>
+</body>
+</html>

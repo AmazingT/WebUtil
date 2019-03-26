@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>input输入框优化</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .input-wrapper{
+            margin: 50px;
+        }
+
+        .input-group{
+            position: relative;
+            z-index: 1;
+            margin: 2.215em 0;
+        }
+
+        .input-group > label{
+            position: absolute;
+            z-index: -1;
+            /* top: -3px; */
+            top: 0px;
+            left: auto;
+            height: 2.7em;
+            line-height: 2.7em;
+            color: #767676;
+            font-size: 1.142em;
+            cursor: text;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -webkit-transition: all .2s;
+            transition: all .2s;
+            /* pointer-events: none;
+            -webkit-font-smoothing: antialiased;
+            -webkit-transform: translate3d(0, 3px, 0) scale(1);
+            transform: translate3d(0, 3px, 0) scale(1);
+            -webkit-transform-origin: left top;
+            transform-origin: left top; */
+        }
+
+        .input-group.focus > label{
+            color: #1428a0;
+        }
+
+
+        .input-group > input{
+            width: 100%;
+            display: block;
+            border: none;
+            outline: none;
+            height: 2.7em;
+            line-height: 1.2;
+            font-size: 1.142em;
+            border-bottom: 1px solid #ddd;
+            background-color: transparent;
+            box-sizing: border-box;
+        }
+
+        .input-group.focus > input{
+            border-bottom: 2px solid #1428a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-wrapper">
+        <div class="input-group">
+            <label for="" class="placeholder">手机号或用户名</label>
+            <input type="text" class="input-control"/>
+        </div>
+
+        <div class="input-group">
+            <label for="" class="placeholder">密码</label>
+            <input type="password" class="input-control"/>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $(".input-wrapper").on('focus', '.input-control', function() {
+                $(this).parent(".input-group").addClass("focus").find(".placeholder").css({
+                    // transform: 'translate3d(0, 0, 0) scale(0.5)'
+                    top: '-1.9em',
+                    left: 'auto',
+                    fontSize: '0.875em'
+                });
+            });
+
+            $(".input-wrapper").on('blur', '.input-control', function() {
+                if ($(this).val() == "") {// 输入框为空时
+                    $(this).parent(".input-group").removeClass("focus").find(".placeholder").css({
+                        // transform: 'translate3d(0, 0, 0) scale(0.5)'
+                        top: '0px',
+                        left: 'auto',
+                        fontSize: '1.142em'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

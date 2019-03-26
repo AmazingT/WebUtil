@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>日期选项控件</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/datepicker.min.css">
+    <style type="text/css">
+        body {
+            font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f2f2f2;
+            font-size: 0.24rem;
+        }
+
+    </style>
+    <!-- <script src="js/rem.js"></script> -->
+</head>
+
+<body>
+    <!-- Select demo markup -->
+    <div class="section">
+        <label>普通控件</label>
+        <select id="demo_select">
+            <option value="">请选择</option>
+            <option value="1">选项一</option>
+            <option value="2">选项二</option>
+            <option value="3">选项三</option>
+            <option value="4">选项四</option>
+            <option value="5">选项五</option>
+            <option value="6">选项六</option>
+            <option value="7">选项七</option>
+            <option value="8">选项八</option>
+            <option value="9">选项九</option>
+        </select>
+    </div>
+    <!-- Date demo markup -->
+    <div class="section">
+        <label>日期控件</label>
+        <input type="text" id="demo_date" />
+    </div>
+    <!-- Date & Time demo markup -->
+    <div class="section">
+        <label>日期时间控件</label>
+        <input type="text" id="demo_datetime" />
+    </div>
+    <!-- Time demo markup -->
+    <div class="section">
+        <label>时间控件</label>
+        <input type="text" id="demo_time" />
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/datepicker.min.js"></script>
+    <script>
+    var theme = "ios";
+    var mode = "scroller";
+    var display = "bottom";
+    var lang = "zh";
+
+
+    // Select demo initialization
+    $('#demo_select').mobiscroll().select({
+        theme: theme, // Specify theme like: theme: 'ios' or omit setting to use default
+        mode: mode, // Specify scroller mode like: mode: 'mixed' or omit setting to use default
+        display: display, // Specify display mode like: display: 'bottom' or omit setting to use default
+        lang: lang // Specify language like: lang: 'pl' or omit setting to use default
+    });
+
+    // Date demo initialization
+    $('#demo_date').mobiscroll().date({
+        theme: theme,
+        mode: mode,
+        display: display,
+        lang: lang
+    });
+
+    // Date & Time demo initialization
+    $('#demo_datetime').mobiscroll().datetime({
+        theme: theme,
+        mode: mode,
+        display: display,
+        lang: lang,
+        dateFormat: "yyyy-mm-dd",
+        minDate: new Date(2000, 3, 10, 9, 22),
+        maxDate: new Date(2030, 7, 30, 15, 44),
+        stepMinute: 1
+    });
+
+    // Time demo initialization
+    $('#demo_time').mobiscroll().time({
+        theme: theme,
+        mode: mode,
+        display: display,
+        lang: lang
+    });
+    </script>
+</body>
+
+</html>

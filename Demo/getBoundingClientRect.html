@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>元素位置参数</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            padding: 5px;
+            border: 4px solid #f60;
+            background-color: #02eb21;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        (function() {
+            var box = document.querySelector(".box");
+            /**
+             *  bottom: 元素底部到可视区最顶部的距离(含border)
+             *  height: 元素的高度(含border padding)相当于offsetHeight(height+上下padding+上下border)
+             *  left: 元素最左到可视区最左的距离(不含border)
+             *  right: 元素最右到可视区最左的距离(含border)
+             *  top: 元素最顶部到可视区最顶部距离(不含border)
+             *  width: 元素的宽度(含border padding)相当于offsetWidth(width+左右padding+左右border)
+             *  x: 元素左上角横坐标
+             *  y: 元素左上角纵坐标
+             */
+            // console.log(box.getBoundingClientRect());;
+            box.scrollIntoView({block: 'end', behavior: 'smooth'});
+        })();
+    </script>
+</body>
+</html>

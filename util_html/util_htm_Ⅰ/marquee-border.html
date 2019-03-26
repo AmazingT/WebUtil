@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文字跑马灯及边框效果</title>
+    <style>
+        .marquee {
+            width: 200px;
+            height: 34px;
+            line-height: 34px;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #ddd;
+        }
+
+        .marquee .content {
+            position: absolute;
+            -webkit-animation: marquee 10s linear infinite;
+            animation: marquee 10s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                left: 200px
+            }
+
+            100% {
+                left: -650px
+            }
+        }
+
+
+        .box {
+            width: 200px;
+            background: repeating-linear-gradient(135deg, transparent, transparent 3px, #000 3px, #000 8px);
+            animation: shine 1s infinite linear;
+            overflow: hidden;
+        }
+
+        .content {
+            height: 128px;
+            margin: 1px;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: -1px -1px;
+            }
+
+            100% {
+                background-position: -12px -12px;
+            }
+        }
+
+
+        .box2 {
+            width: 150px;
+            border: 2px dashed #fff;
+            background: linear-gradient(to bottom, #34538b, #cd0000);
+            background-origin: border-box;
+        }
+        .content2 {
+            height: 100px;
+            background-color: #fff;
+        }
+
+        .box3 {
+            width: 200px;
+            height: 150px;
+            border: 2px dashed #cd0000;
+            box-sizing: border-box;
+        }
+        @supports (-webkit-mask: none) or (mask: none) {
+            .box3 {
+                border: none;
+                background: linear-gradient(to bottom, #34538b, #cd0000) no-repeat;
+                -webkit-mask-image: linear-gradient(to right, #000 6px, transparent 6px), linear-gradient(to bottom, #000 6px, transparent 6px),  linear-gradient(to right, #000 6px, transparent 6px), linear-gradient(to bottom, #000 6px, transparent 6px);
+                -webkit-mask-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+                -webkit-mask-position: 0 0, 0 0, 0 100%, 100% 0;
+                -webkit-mask-size: 8px 2px, 2px 8px, 8px 2px, 2px 8px;
+                /* 合并写法 */
+                mask: linear-gradient(to right, #000 6px, transparent 6px) repeat-x,
+                linear-gradient(to bottom, #000 6px, transparent 6px) repeat-y,
+                linear-gradient(to right, #000 6px, transparent 6px) repeat-x 0 100%,
+                linear-gradient(to bottom, #000 6px, transparent 6px) repeat-y 100% 0;
+                mask-size: 8px 2px, 2px 8px, 8px 2px, 2px 8px;
+            }    
+        }
+
+        /* CSS3 渐变 linear-gradient(direction/angle, color-stop1, color-stop2, ...) */
+        /* 默认从上到下 */
+        #grad {
+            background: -webkit-linear-gradient(red, blue); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(red, blue); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(red, blue); /* Firefox 3.6 - 15 */
+            background: linear-gradient(red, blue); /* 标准的语法 */
+        }
+
+        /* 从左到右 */
+        #grad {
+            background: -webkit-linear-gradient(left, red , blue); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(right, red, blue); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(right, red, blue); /* Firefox 3.6 - 15 */
+            background: linear-gradient(to right, red , blue); /* 标准的语法 */
+        }
+
+        /* 左上到右下 */
+        #grad {
+            background: -webkit-linear-gradient(left top, red , blue); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(bottom right, red, blue); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(bottom right, red, blue); /* Firefox 3.6 - 15 */
+            background: linear-gradient(to bottom right, red , blue); /* 标准的语法 */
+        }
+
+        .box4 {
+            height: 1px;
+            background: linear-gradient(to right, #ff0000, #ff0000 1.5px, transparent 1.5px, transparent);
+            background-size: 3px 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="marquee">
+        <div class="content">让我掉下眼泪的 不止昨夜的酒.让我依依不舍的 不止你的温柔.余路还要走多久 你攥着我的手</div>
+    </div>
+
+    <div class="box">
+        <div class="content">内容占位</div>
+    </div>
+
+    <div class="box2">
+        <div class="content2"></div>
+    </div>
+
+    <div class="box3"></div>
+
+    <div class="box4"></div>
+</body>
+
+</html>

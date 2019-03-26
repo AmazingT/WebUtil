@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css加载动画总结</title>
+    <style>
+        /* animate one */
+        .circle-wrap {
+            width:70px; 
+            height:70px;
+            line-height: 70px;
+            position: relative;
+            text-align: center;
+        }
+
+        .circle-wrap .circle-box {
+            width: 70px;
+            height:70px;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            animation: circle-rotate 2s linear infinite;
+            -webkit-animation: circle-rotate 2s linear infinite;
+        }
+		.circle-wrap .circle-box:before {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            content:""; 
+            display:block; 
+            width:70px;
+            height:35px; 
+            padding:4px; 
+            padding-bottom:0; 
+            box-sizing:border-box;
+			border-top-left-radius:50px;
+			border-top-right-radius:50px;
+			background:-webkit-gradient(
+				linear,
+				left top,
+				right top,
+				color-stop(0,#fff),
+				color-stop(1,#fff)
+			),-webkit-gradient(
+				linear,
+				left top,
+				right top,
+				color-stop(0,#0093fc),
+				color-stop(1,#75b8fc)
+			);
+			background-clip:content-box,padding-box;
+		}
+        .circle-wrap .circle-box:after {
+            position: absolute;
+            z-index: -1;
+            top: 35px;
+            content:""; 
+            display:block;
+            width:70px;
+            height:35px; 
+            padding:4px; 
+            padding-top:0; 
+            box-sizing:border-box;
+			border-bottom-left-radius:50px;
+			border-bottom-right-radius:50px;
+			background:-webkit-gradient(
+				linear,
+				left top,
+				right top,
+				color-stop(0,#fff),
+				color-stop(1,#fff)
+			),-webkit-gradient(
+				linear,
+				left top,
+				right top,
+				color-stop(0,#fff),
+				color-stop(1,#75b8fc)
+			);
+			background-clip:content-box,padding-box;
+        }
+
+        .circle-wrap .seconds {
+            font-size: 14px;
+        }
+        
+        .circle-wrap .seconds span {
+            font-size: 24px;
+        }
+
+        @keyframes circle-rotate {
+            0% {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes circle-rotate {
+            0% {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        /* animate two */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .double-bounce1,
+        .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background-color: #5cb7ff;
+            opacity: .6;
+            animation: bounce 2s infinite ease-in-out;
+            -webkit-animation: bounce 2s infinite ease-in-out;
+        }
+
+        .double-bounce2 {
+            animation-delay: -1s;
+            -webkit-animation-delay: -1s;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: scale(0);
+                -webkit-transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1);
+                -webkit-transform: scale(1);
+            }
+        }
+
+        @-webkit-keyframes bounce {
+
+            0%,
+            100% {
+                transform: scale(0);
+                -webkit-transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1);
+                -webkit-transform: scale(1);
+            }
+        }
+
+        /* animate three */
+        .spinner-rect {
+            height: 60px;
+        }
+
+        .spinner-rect>div {
+            width: 6px;
+            height: 100%;
+            margin-right: 4px;
+            display: inline-block;
+            background-color: #5cb7ff;
+            animation: stretchdelay 1.2s infinite ease-in-out;
+            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+        }
+
+        .spinner-rect .rect2 {
+            animation-delay: -1.1s;
+            -webkit-animation-delay: -1.1s;
+        }
+
+        .spinner-rect .rect3 {
+            animation-delay: -1s;
+            -webkit-animation-delay: -1s;
+        }
+
+        .spinner-rect .rect4 {
+            animation-delay: -0.9s;
+            -webkit-animation-delay: -0.9s;
+        }
+
+        .spinner-rect .rect5 {
+            animation-delay: -0.8s;
+            -webkit-animation-delay: -0.8s;
+        }
+
+        @keyframes stretchdelay {
+
+            0%,
+            40%,
+            100% {
+                transform: scaleY(.4);
+                -webkit-transform: scaleY(.4);
+            }
+
+            20% {
+                transform: scaleY(1);
+                -webkit-transform: scaleY(1);
+            }
+        }
+
+        @-webkit-keyframes stretchdelay {
+
+            0%,
+            40%,
+            100% {
+                transform: scaleY(.4);
+                -webkit-transform: scaleY(.4);
+            }
+
+            20% {
+                transform: scaleY(1);
+                -webkit-transform: scaleY(1);
+            }
+        }
+
+        /* animate four */
+        .spinner-reversal {
+            width: 60px;
+            height: 60px;
+            background-color: #5cb7ff;
+            transform: perspective(120px);
+            -webkit-transform: perspective(120px);
+            animation: reversal 1.2s infinite ease-in-out;
+            -webkit-animation: reversal 1.2s infinite ease-in-out;
+        }
+
+        @keyframes reversal {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+                -webkit-transform: rotateX(0deg) rotateY(0deg)
+            }
+
+            50% {
+                transform: rotateX(-180deg) rotateY(0deg);
+                -webkit-transform: rotateX(-180deg) rotateY(0deg)
+            }
+
+            100% {
+                transform: rotateX(-180deg) rotateY(-180deg);
+                -webkit-transform: rotateX(-180deg) rotateY(-180deg)
+            }
+        }
+
+        /* animate five */
+        .spinner-bounce>div {
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            background-color: #5cb7ff;
+            display: inline-block;
+            font-size: 0;
+            animation: boucne-circle 1.4s infinite ease-in-out;
+            -webkit-animation: boucne-circle 1.4s infinite ease-in-out;
+        }
+
+        .spinner-bounce .bounce1 {
+            animation-delay: -.32s;
+            -webkit-animation-delay: -.32s;
+        }
+
+        .spinner-bounce .bounce2 {
+            animation-delay: -.16s;
+            -webkit-animation-delay: -.16s;
+        }
+
+        @keyframes boucne-circle {
+
+            0%,
+            80%,
+            100% {
+                opacity: 0;
+                transform: scale(0);
+                -webkit-transform: scale(0);
+            }
+
+            40% {
+                opacity: 1;
+                transform: scale(.6);
+                -webkit-transform: scale(.6);
+            }
+        }
+
+        @-webkit-keyframes boucne-circle {
+
+            0%,
+            80%,
+            100% {
+                opacity: 0;
+                transform: scale(0);
+                -webkit-transform: scale(0);
+            }
+
+            40% {
+                opacity: 1;
+                transform: scale(.6);
+                -webkit-transform: scale(.6);
+            }
+        }
+
+        /* animate six */
+        .spinner-rotate {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .spinner-container > div {
+            width: 8px;
+            height: 8px;
+            background-color: #5cb7ff;
+            border-radius: 100%;
+            position: absolute;
+            animation: rotate-circle 1.2s infinite ease-in-out;
+            -webkit-animation: rotate-circle 1.2s infinite ease-in-out;
+        }
+
+        .spinner-container.container2 {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .spinner-container.container3 {
+            transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+        }
+
+        .spinner-container .circle1 {
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- animate one -->
+    <div class="circle-wrap">
+        <div class="circle-box"></div>
+        <div class="seconds"><span>5</span>秒</div>
+    </div>
+
+    <!-- animate two -->
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+
+    <!-- animate three -->
+    <div class="spinner-rect">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+
+    <!-- animate four -->
+    <div class="spinner-reversal"></div>
+
+    <!-- animate five -->
+    <div class="spinner-bounce">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+
+    <!-- animate six -->
+    <div class="spinner-rotate">
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+    </div>
+</body>
+
+</html>

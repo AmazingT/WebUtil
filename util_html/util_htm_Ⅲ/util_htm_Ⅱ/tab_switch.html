@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>tab点击缓慢切换效果</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			font-family: "微软雅黑";
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.box {
+			width: 448px;
+			height: 150px;
+			margin: 50px auto;
+			overflow: hidden;
+			border: 1px solid #eee;
+		}
+
+		.box .title {
+			height: 50px;
+			position: relative;
+			background: #f7f7f7;
+		}
+
+		.title ul {
+			left: -1px;
+			width: 454px;
+			position: absolute;
+		}
+
+		.title ul li {
+			width: 88px;
+			height: 26px;
+			float: left;
+			font-size: 18px;
+			padding: 12px 1px;
+			text-align: center;
+			display: inline-block;
+			border-bottom: 1px solid #eee;
+		}
+
+		.title ul li a {
+			color: #000;
+		}
+
+		.title ul li a:hover {
+			color: #f90;
+		}
+
+		.title ul li.select {
+			background-color: #fff;
+			border-bottom-color: #fff;
+			border-left: 1px solid #eee;
+			border-right: 1px solid #eee;
+		}
+
+		#content {
+			width: 448px;
+			height: 100px;
+			overflow: hidden;
+			position: relative;
+		}
+
+		#content .demo {
+			top: 0;
+			left: 0;
+			position: absolute;
+		}
+
+		.demo ul li a {
+			color: #787676;
+			font-size: 15px;
+		}
+
+		.demo ul li a:hover {
+			color: #f90;
+		}
+
+		.demo ul li {
+			width: 160px;
+			height: 20px;
+			float: left;
+			overflow: hidden;
+			margin: 15px 10px 10px 40px;
+		}
+	</style>
+	<script src="js/tab_switch.js"></script>
+</head>
+
+<body>
+	<div class="box" id="box">
+		<div class="title" id="title">
+			<ul>
+				<li class="select"><a href="#">公告</a></li>
+				<li><a href="#">规则</a></li>
+				<li><a href="#">论坛</a></li>
+				<li><a href="#">安全</a></li>
+				<li><a href="#">公益</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<div class="demo">
+				<ul>
+					<li><a href="#">通过本课程让您掌握一</a></li>
+					<li><a href="#">通过封装的组件实现一</a></li>
+					<li><a href="#">通过封装的组件实现一</a></li>
+					<li><a href="#">通过封装的组件实现一</a></li>
+				</ul>
+			</div>
+			<div class="demo" style="display:none;">
+				<ul>
+					<li><a href="#">通过封装的组件实现二</a></li>
+					<li><a href="#">通过封装的组件实现二</a></li>
+					<li><a href="#">通过封装的组件实现二</a></li>
+					<li><a href="#">通过封装的组件实现二</a></li>
+				</ul>
+			</div>
+			<div class="demo" style="display:none;">
+				<ul>
+					<li><a href="#">通过封装的组件实现三</a></li>
+					<li><a href="#">通过封装的组件实现三</a></li>
+					<li><a href="#">通过封装的组件实现三</a></li>
+					<li><a href="#">通过封装的组件实现三</a></li>
+				</ul>
+			</div>
+			<div class="demo" style="display:none;">
+				<ul>
+					<li><a href="#">通过封装的组件实现四</a></li>
+					<li><a href="#">通过封装的组件实现四</a></li>
+					<li><a href="#">通过封装的组件实现四</a></li>
+					<li><a href="#">通过封装的组件实现四</a></li>
+				</ul>
+			</div>
+			<div class="demo" style="display:none;">
+				<ul>
+					<li><a href="#">通过封装的组件实现五</a></li>
+					<li><a href="#">通过封装的组件实现五</a></li>
+					<li><a href="#">通过封装的组件实现五</a></li>
+					<li><a href="#">通过封装的组件实现五</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包问题</title>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	
+	<script>
+		var list = document.getElementsByTagName('li');
+		for(var i=0,len=list.length;i<len;i++) {
+			(function(n) {
+				list[i].onclick = function(){
+					alert(n);
+				}
+			})(i);
+
+			// list[i].i = i;
+			// list[i].onclick = function() {
+			// 	alert(this.i)
+			// }
+
+			// (function() {
+			// 	var tmp = i;
+			// 	list[i].onclick = function() {
+			// 		alert(tmp)
+			// 	}
+			// })();
+
+			// list[i].onclick = (function(n) {
+			// 	return function() {
+			// 		alert(n);
+			// 	}
+			// })(i);
+		}
+	</script>
+	<!-- <script>
+		var arr = document.getElementsByTagName('li'),
+			len = arr.length;
+		/********错误做法****/
+		// for (var i = 0;i < len;i++) {
+		// 	arr[i].onclick = function() {
+		// 		alert(i);
+		// 	}
+		// }
+		/*********一*********/
+		var ul = document.getElementsByTagName('ul')[0];
+		ul.addEventListener('click', function(e) { // 事件委托
+			var e = e || window.event;
+			var t = e.target || e.srcElement;
+			alert(t.innerHTML); // 输出的是当前点击的li内的内容
+		},true);
+
+		/*********二*********/
+		for (var i=0;i<arr.length;i++) {
+			(function(arg) {
+				arr[i].onclick = function() {
+					alert(arg);
+				}
+			})(i);
+		}
+
+		/*********三*********/
+		for (var i=0;i<arr.length;i++) {
+			arr[i].i = i;
+			arr[i].onclick = function() {
+				alert(this.i);
+			}
+		}
+
+		/*********四*********/
+		for (var i=0;i<arr.length;i++) {
+			arr[i].onclick = (function(arg) {
+				return function() {
+					alert(arg);
+				}
+			})(i);
+		}
+
+		/*********五*********/
+		for (var i=0;i<arr.length;i++) {
+			(function() {
+				var temp = i;
+				arr[i].onclick = function() {
+					alert(temp);
+				}
+			})();
+		}
+
+		/*********六*********/
+		for (var i=0;i<arr.length;i++) {
+			arr[i].onclick = (function() {
+				var temp = i;
+				return function() {
+					alert(temp);
+				}
+			})();
+		}
+
+		/*********七*********/
+		for (var i=0;i<arr.length;i++) {
+			(arr[i].onclick = function() {
+				alert(arguments.callee.i);
+			}).i = i;
+		}
+
+		/*********八*********/
+		for (var i=0;i<arr.length;i++) {
+			arr[i].onclick = new Function("alert("+i+");");
+		}
+
+		/*********九*********/
+		for (var i=0;i<arr.length;i++) {
+			arr[i].onclick = Function("alert("+i+");");
+		}
+
+		/*********十*********/
+		for (var i=0;i<arr.length;i++) {
+			let j = i; // 块级变量
+			arr[i].onclick = function() {
+				alert(j);
+			}
+		}
+	</script> -->
+</body>
+</html>

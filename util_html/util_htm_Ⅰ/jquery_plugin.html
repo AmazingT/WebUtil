@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<title>jquery插件封装方法</title>
+
+</head>
+<body>
+    <div>获取</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+        ;(function($) {
+            // function getValue(params) {
+            //     return params;
+            // }
+
+            // $.fn.extend({
+            //     callback: function(params) {
+            //         return getValue(params);
+            //     }
+            // });
+
+            $.fn.callback = function (options) {
+                var defaults = {
+                    name: 'sb',
+                    age: 20,
+                    sex: '男'
+                };
+
+                var options = $.extend({}, defaults, options);
+
+                console.log(options);
+            }
+        })(jQuery);
+    </script>
+
+    <script>
+        console.log($('div').callback({
+            name: 'zb',
+            age: 24
+        }));
+    </script>
+</body>
+</html>

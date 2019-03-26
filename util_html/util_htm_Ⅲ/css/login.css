@@ -1,0 +1,110 @@
+
+body{
+	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif; 
+}
+
+.container h2{
+	font-size: 16px;
+	text-align: center;
+}
+.form-group{
+	margin: 60px 0 0 0;
+	padding: 0 20px;
+}
+.form-group input{
+	margin: 30px 0 0 0;
+}
+#nav li:nth-child(1) a{
+	border-top: 0;
+	border-left: 0;
+	margin-right: 0;
+}
+#nav li:nth-child(2) a{
+	border-top: 0;
+	border-right: 0;
+	margin-right: 0;
+}
+#nav li{
+	display: inline-block;
+	width: 50%;
+	text-align: center;
+}
+#nav li a{
+	color: #2E2E2E;
+	padding: 12px 0;
+}
+#loginBox{
+	width: 100%;
+	margin: 10px auto;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.text{
+	margin-top: 15px;	
+}
+.text ul{
+	padding: 0;
+	position: relative;
+}
+.text ul li{
+	display: inline-block;
+}
+.text ul li:nth-child(1) a{
+	color: #2D2C2C;
+	text-decoration: none;
+}
+.text ul li:nth-child(3){
+	position: absolute;
+	right: 0;
+}
+.btn-bottom{
+	margin-bottom: 20px;
+}
+.text ul li a{
+	font-size: 12px;
+}
+#nav .active a{
+	color: #FFF;
+	background: #337ab7;
+}
+#footer{
+	padding: 5px;
+	bottom: 0;
+	width: 100%;
+	position: fixed;
+	text-align: center;
+	background: #eee;
+	font-size: 12px;
+	border-top: 1px solid #ccc;
+}
+#footer a{
+	color: #3A3939;
+	text-decoration: none;
+}
+#footer p{
+	margin: 5px 0;
+	color: #AAAAAA;
+}
+@media screen and (min-width:768px){
+	.container h2{font-size: 18px;}
+	#loginBox {width:90%;}
+	.text ul li a{font-size: 14px;}
+	#footer{font-size: 14px;}
+	#loginBox {margin: 50px auto;}
+}
+@media screen and (min-width:992px){
+	.container h2{
+	font-size: 22px;}
+	#loginBox {width:50%;}
+	.text ul li a{font-size: 14px;}
+	#footer{font-size: 14px;}
+	#loginBox {margin: 50px auto;}
+}
+@media screen and (min-width:1200px){
+	.container h2{font-size: 25px;}
+	#loginBox {width:30%;}
+	.text ul li a{font-size: 14px;}
+	#footer{font-size: 14px;}
+	#loginBox {margin: 50px auto;}
+}

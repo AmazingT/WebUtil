@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js实现瀑布流布局</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			position: relative;
+		}
+		.box{
+			float: left;
+			padding: 15px 0  0 15px;
+		}
+		.pic{
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-shadow: 0 0 5px #ccc;
+		}
+		.pic img{
+			width: 165px;
+			height: auto;
+		}
+	</style>
+
+
+</head>
+<body>
+	<div id="container">
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/0.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/1.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/2.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/3.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/4.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/5.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/6.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/7.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/8.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/9.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/10.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/11.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/12.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/13.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/14.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/15.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/16.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/17.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/18.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/19.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/20.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/21.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/22.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/23.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/24.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/25.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/26.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/27.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/28.jpg" alt="">
+			</div>
+		</div>
+		<div class="box">
+			<div class="pic">
+				<img src="imgs/29.jpg" alt="">
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		window.onload=function(){
+			waterfall('container','box');
+			
+			// 服务器传过来的json格式的图片地址
+			var dataInt={"data":[{"src":"31.jpg"},{"src":"32.jpg"},{"src":"33.jpg"},{"src":"34.jpg"}]};
+			window.onscroll=function(){
+			
+			// 判断是否可以加载数据
+			if(checkScrollSlide()){//写成了checkScrollSlide
+				var oParent=document.getElementById('container');
+				// 将数据块渲染到当前页面的尾部
+				for(var i=0;i<dataInt.data.length;i++){
+					var oBox=document.createElement('div');
+					oBox.className='box';
+					oParent.appendChild(oBox);
+
+					var oPic=document.createElement('div');
+					oPic.className='pic';
+					oBox.appendChild(oPic);
+
+					var oImg=document.createElement('img');
+					oImg.src='imgs/'+dataInt.data[i].src;
+					console.log(oImg);
+					oPic.appendChild(oImg);
+				}
+				waterfall('container','box');
+			}
+		}
+	}
+
+		function waterfall(oParent,oChild){
+			var container=document.getElementById(oParent),
+				oBoxs=getByClass(container,oChild);
+			//console.log(oBoxs.length);
+			var oBoxW=oBoxs[0].offsetWidth;
+			//console.log(oBoxW);
+			//混杂模式和兼容模式
+			var pageWidth=document.body.clientWidth || document.documentElement.clientWidth;
+			var cols=Math.floor(pageWidth/oBoxW);
+			//console.log(cols);
+			container.style.cssText='width:'+cols*oBoxW+'px;margin:0 auto';
+
+			//瀑布流实现部分
+			var arrHeight=[];
+			for(var i=0;i<oBoxs.length;i++){
+				if(i<cols){
+					arrHeight.push(oBoxs[i].offsetHeight);
+				}else{
+					var minBoxH=Math.min.apply(null,arrHeight);
+					//console.log(minBoxH);
+					var index=getMinHIndex(arrHeight,minBoxH);
+
+					oBoxs[i].style.position='absolute';//父元素设为relative的原因
+					oBoxs[i].style.top=minBoxH+'px';//不要忘记加单位,不然没效果。offsetHeight...是数值型的,没有单位。
+					oBoxs[i].style.left=oBoxs[index].offsetLeft+'px';
+					arrHeight[index]+=oBoxs[i].offsetHeight;//更新最小高度值
+				}
+			}
+		}
+		//获取所有class='box'的div(数组)
+		function getByClass(oParent,name){
+			var classBox=new Array(),
+				elements=oParent.getElementsByTagName('*');
+			for(var i=0;i<elements.length;i++){
+					if(elements[i].className==name){
+						classBox.push(elements[i]);
+					}
+				}
+				return classBox;
+		}
+		//获取最小高度的div的索引值
+		function getMinHIndex(array,min){
+			for(var i=0;i<array.length;i++){
+				if(array[i]==min){
+					return i;
+				}
+			}
+		}
+		//判断加载条件
+		function checkScrollSlide(){
+			//获取最后一个div的offsetHeight和height
+			var oParent=document.getElementById('container'),
+				oBoxs=getByClass(oParent,'box');
+			var lastBoxH=Math.floor(oBoxs[oBoxs.length-1].offsetHeight/2)+oBoxs[oBoxs.length-1].offsetTop;
+			var scrollT=document.body.scrollTop || document.documentElement.scrollTop;
+			var clientH=document.body.clientHight || document.documentElement.clientHeight;
+
+			return (lastBoxH<scrollT+clientH)?true:false;
+		}
+		//取出数组中最大的值
+		/*
+		var arr=[5,7,9,1];
+		function getMax(arr){
+			for(var i=0;ret=arr[0];i<arr.length;i++){
+				ret=Math.max(ret,arr[i]);
+			}
+			return ret;
+		}
+
+		//改进版
+		function getMax(arr){
+			return Math.max.apply(null,arr);
+		}
+		*/
+	</script>
+</body>
+</html>

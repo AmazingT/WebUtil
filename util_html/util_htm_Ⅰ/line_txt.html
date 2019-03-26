@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>横线中间显示文字的实现</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html, body{
+			height: 100%;
+		}
+		.wrapper{
+			position: relative;
+			text-align: center;
+		}
+		.wrapper .line{
+			width: 80%;
+			position: absolute;
+			z-index: -1;
+			top: 50%;
+			left: 10%;
+			border: 1px solid #000;
+		}
+		.wrapper .text{
+			font-size: 30px;
+			padding: 0 12px;
+			background: #fff;
+		}
+
+		.content{
+			width: 80%;
+			display: flex;
+			margin: 0 auto;
+		}
+		.content .line{
+			flex: 1;
+			top: -20px;
+			position: relative;
+            border-bottom: 1px solid #000;
+		}
+		.content .text{
+			font-size: 30px;
+			padding: 0 12px;
+		}
+	</style>
+</head>
+<body>
+	<!-- 实现一：文字需加背景颜色(定位加padding) -->
+	<div class="wrapper">
+		<div class="line"></div>
+		<span class="text">优惠信息</span>
+	</div>
+
+	<!-- 实现二：文字不需加背景颜色(CSS flex布局) -->
+	<div class="content">
+		<div class="line"></div>
+		<div class="text">优惠信息</div>
+		<div class="line"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖拽实现</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #f60;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    
+    <script>
+        (function() {
+            var box = document.querySelector(".box");
+
+            // 拖拽方法
+            var funDrag = function(element, callback) {
+                callback = callback || function() {};
+                var params = {
+                    top: 0,
+                    left: 0,
+                    currentX: 0,
+                    currentY: 0,
+                    flag: false
+                };
+
+                /**
+                 * js获取元素的属性值
+                 * el.style.border只能获取行内样式(写在标签中style="") 不能获取内联样式和外部样式
+                 * 如：获取box宽度 el.style.width返回空 若是行内样式有单位px offsetWidth无单位
+                 */
+
+                /**
+                 * currentStyle和getComputedStyle不能设置属性只能获取
+                 * currentStyle: 只兼容IE,不兼容火狐和谷歌(ele.currentStyle["attr"]或ele.currentStyle.attr)
+                 * getComputedStyle: 只兼容火狐和谷歌,不兼容IE(window.getComputedStyle(ele,null)[attr]或window.getComputedStyle(ele,null).attr)
+                 */
+                // 获取相关CSS属性
+                var getCssAttr = function(o, attr) {
+                    return o.currentStyle ? o.currentStyle[attr] : document.defaultView.getComputedStyle(o, false)[attr];
+                };
+
+                // 拖拽实现
+                if (getCssAttr(element, "left") !== "auto") {
+                    params.left = getCssAttr(element, "left");
+                }
+
+                if (getCssAttr(element, "top") !== 'auto') {
+                    params.top = getCssAttr(element, "top");
+                }
+
+                // o是移动对象
+                element.onmousedown = function(e) {
+                    params.flag = true;
+                    e = e || window.event;
+                    params.currentX = e.clientX;
+                    params.currentY = e.clientY;
+                };
+
+                document.onmouseup = function() {
+                    params.flag = false;
+                    if (getCssAttr(element, "left") !== "auto") {
+                        params.left = getCssAttr(element, "left");
+                    }
+
+                    if (getCssAttr(element, "top") !== "auto") {
+                        params.top = getCssAttr(element, "top");
+                    }
+                    callback();
+                }
+
+                document.onmousemove = function(e) {
+                    e = e || window.event;
+                    if (params.flag) {
+                        var nowX = e.clientX, nowY = e.clientY;
+                        var disX = nowX - params.currentX, disY = nowY - params.currentY;
+                        element.style.left = parseInt(params.left) + disX + "px";
+                        element.style.top = parseInt(params.top) + disY + "px";
+                    }
+                }   
+            }
+
+            funDrag(box);
+        })();    
+    </script>
+</body>
+</html>

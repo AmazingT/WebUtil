@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jQuery Lightbox图片放大预览代码</title>
+<style>
+.example {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+.example img{
+    width: 100%;
+	height: auto;
+}
+.zoomify.zoomed { 
+    position: relative; 
+    z-index: 999; 
+}
+.zoomify-shadow { 
+    position: fixed; 
+    z-index: 990;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    opacity: 0; 
+    background: rgba(0, 0, 0 , .5);
+}
+.zoomify-shadow.zoomed { 
+    opacity: 1; 
+}
+
+</style>
+</head>
+<body class="">
+<div class="container">		
+	<div class="examples">	
+		<div class="row">
+			<div class="example">
+				<p><img src="images/1.jpg" class="img-rounded 0" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/2.jpg" class="img-rounded 1" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/3.jpg" class="img-rounded 2" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/4.jpg" class="img-rounded 3" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/5.jpg" class="img-rounded 4" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/6.jpg" class="img-rounded 5" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/7.jpg" class="img-rounded 6" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/4.jpg" class="img-rounded 7" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/5.jpg" class="img-rounded 8" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/6.jpg" class="img-rounded 9" alt=""></p>
+			</div>
+			<div class="example">
+				<p><img src="images/7.jpg" class="img-rounded 10" alt=""></p>
+			</div>
+		</div>
+	</div>	
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/zoom.js"></script>
+<script type="text/javascript">
+	$('.examples img').zoomify();
+</script>
+
+</body>
+</html>
